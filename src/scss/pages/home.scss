@@ -1,0 +1,49 @@
+@use "../components/main" as *;
+
+.body--home {
+  position: relative;
+  background-color: $color-primary;
+  color: white;
+  @include flex-center;
+}
+
+h1 {
+  font-size: 140px;
+  font-family: "Red Rose", sans-serif;
+  margin-bottom: 85px;
+}
+
+.hero-subtitle {
+  font-size: 48px;
+}
+
+.home-bg-controller {
+  position: absolute;
+  bottom: 95px;
+  left: -50px;
+  width: 415px;
+  height: 300px;
+  opacity: 0.05;
+  rotate: 37.5deg;
+  z-index: -1;
+
+  > path {
+    fill: $color-secondary;
+  }
+}
+
+.home-btn-img-container {
+  // position: relative;
+  @include flex-center;
+  width: 35px;
+
+  > img {
+    // position: absolute;
+    // align-self: center;
+  }
+}
+
+.home-btn__arrow-hover {
+  // opacity: 0;
+  display: none;
+}

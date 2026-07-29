@@ -1,0 +1,62 @@
+@use "../abstracts/load-abstracts" as *;
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.btn {
+  font-family: "Red Rose", sans-serif;
+  font-weight: 700;
+  @include flex-center(row);
+
+  &--primary {
+    background-color: $color-secondary;
+    color: $color-primary;
+  }
+
+  &--home {
+    font-size: 40px;
+    gap: 20px;
+    padding: 24px;
+    width: 250px;
+    height: 98px;
+    margin-bottom: 5px;
+    transition: all $transition-hover;
+
+    .home-btn__controller {
+      transition: rotate $transition-hover;
+    }
+
+    .home-btn__arrow {
+      transition: opacity $transition-hover;
+    }
+
+    .home-btn__arrow-hover {
+      transition: opacity $transition-hover;
+    }
+
+    &:hover {
+      width: 270px;
+      height: 103px;
+      margin-bottom: 0;
+      transition: all $transition-hover;
+
+      .home-btn__controller {
+        rotate: -26deg;
+        transition: rotate $transition-hover;
+      }
+
+      .home-btn__arrow {
+        // opacity: 0;
+        display: none;
+      }
+
+      .home-btn__arrow-hover {
+        // opacity: 1;
+        display: unset;
+      }
+    }
+  }
+}
