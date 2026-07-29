@@ -36,11 +36,6 @@ h1 {
   // position: relative;
   @include flex-center;
   width: 35px;
-
-  > img {
-    // position: absolute;
-    // align-self: center;
-  }
 }
 
 .home-btn__arrow-hover {
