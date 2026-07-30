@@ -1,4 +1,5 @@
-import './scss/main.scss'
+import './scss/main.scss';
+let theme = "code vibes";
 
 init()
 

@@ -3,18 +3,32 @@
 body {
   color: $color-primary;
   padding: 120px 170px 0 170px;
+  @include flex-center(column, flex-start);
 }
 
 h1 {
   font-size: 54px;
 }
 
+.headline-wrapper {
+  align-self: flex-start;
+  @include flex-gap();
+  margin-bottom: 64px;
+
+  img {
+    margin-left: -20px;
+  }
+}
+
 .content-wrapper-settings {
+  width: 100%;
   @include flex-center(row, space-between);
 }
 
 .game-settings {
-  @include flex-gap(column, 48px);
+  @include flex-gap();
+  height: 100%;
+  justify-content: space-between;
 
   &__group {
     > legend {
@@ -71,32 +85,10 @@ h1 {
   }
 }
 
-input[type="radio"] {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 3px solid $color-primary;
-  border-radius: 50%;
-  display: grid;
-  place-content: center;
-
-  &::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    transform: scale(0);
-    transition: transform 0.15s ease;
-    background: $color-primary;
-  }
-
-  &:checked {
-    border: 2.5px solid $color-primary;
-
-    &::before {
-      transform: scale(1);
-    }
-  }
+.settings-summary {
+  @include flex-center(column);
+  align-items: end;
+  gap: 45px;
 }
 
 .game-preview {
@@ -104,5 +96,94 @@ input[type="radio"] {
   height: 410px;
   background-color: black;
   border-radius: 16px;
-  padding: 18px 8px;
+  //   padding: 18px 8px;
+  @include flex-gap(column, 80px);
+
+  &[data-theme="code vibes"] {
+    @include bg-gradient(rgba(48, 49, 49, 1), rgba(109, 109, 109, 1));
+  }
+
+  &__cards {
+    @include flex-center(row);
+    position: relative;
+
+    .card-code-vibes {
+      position: absolute;
+      box-shadow: 4px 4px 5.4px 0 rgba(0, 0, 0, 0.2);
+
+      &--back {
+        rotate: -5.5deg;
+        z-index: 1;
+        top: 0;
+        left: 70px;
+      }
+
+      &--front {
+        rotate: 15deg;
+        top: 40px;
+        right: 80px;
+
+        > img {
+          height: 90px;
+          width: 90px;
+        }
+      }
+    }
+  }
+}
+
+.chosen-settings {
+  @include flex-center(row, unset);
+  gap: 16px;
+  height: 80px;
+  background-color: $light-gray;
+  padding: 14px 20px;
+
+  > p {
+    font-size: 20px;
+  }
+}
+
+.btn-settings {
+  padding: 14px 20px;
+  @include flex-gap(row, 8px);
+  width: 126px;
+  transition: transform $transition-hover;
+
+  > p {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  svg {
+    transition: rotate $transition-hover;
+  }
+
+  &:not(:disabled) {
+    &:hover {
+      transform: scale(1.05);
+      transition: transform $transition-hover;
+
+      > p {
+        font-size: 22px;
+      }
+
+      > svg {
+        rotate: -5deg;
+        transition: rotate $transition-hover;
+      }
+    }
+  }
+
+  &:disabled {
+    background-color: #dbdbd6 !important;
+
+    > p {
+      color: #a3a1a1;
+    }
+
+    svg path {
+      fill: #a3a1a1;
+    }
+  }
 }

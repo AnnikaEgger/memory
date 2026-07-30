@@ -10,3 +10,8 @@
   flex-direction: $dir;
   gap: $gap;
 }
+
+@mixin bg-gradient($color1, $color2) {
+  background: $color1;
+  background: linear-gradient(to bottom left, $color1 50%, $color2 100%);
+}
