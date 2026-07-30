@@ -1,1 +1,108 @@
-@use "../components/main";
+@use "../components/main" as *;
+
+body {
+  color: $color-primary;
+  padding: 120px 170px 0 170px;
+}
+
+h1 {
+  font-size: 54px;
+}
+
+.content-wrapper-settings {
+  @include flex-center(row, space-between);
+}
+
+.game-settings {
+  @include flex-gap(column, 48px);
+
+  &__group {
+    > legend {
+      @include flex-gap(row, 10px);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    > .options-wrapper {
+      padding-left: 45px;
+      @include flex-gap(column, 12px);
+    }
+  }
+}
+
+.option {
+  @include flex-gap(row, 12px);
+
+  img {
+    opacity: 0;
+    transition: opacity $transition-hover;
+  }
+
+  label {
+    height: 24px;
+    @include flex-center;
+  }
+
+  &:hover {
+    label {
+      font-weight: 700;
+    }
+
+    img {
+      transition: opacity $transition-hover;
+      //   opacity: 1;
+    }
+  }
+
+  &:has(input[type="radio"]:checked) {
+    & img {
+      opacity: 1;
+      transition: opacity $transition-hover;
+    }
+
+    & label {
+      font-weight: 700;
+    }
+  }
+
+  label {
+    font-size: 20px;
+  }
+}
+
+input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid $color-primary;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.15s ease;
+    background: $color-primary;
+  }
+
+  &:checked {
+    border: 2.5px solid $color-primary;
+
+    &::before {
+      transform: scale(1);
+    }
+  }
+}
+
+.game-preview {
+  width: 460px;
+  height: 410px;
+  background-color: black;
+  border-radius: 16px;
+  padding: 18px 8px;
+}

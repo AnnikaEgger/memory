@@ -1,6 +1,12 @@
-@mixin flex-center($dir: column) {
+@mixin flex-center($dir: column, $justify: center) {
   display: flex;
   flex-direction: $dir;
-  justify-content: center;
+  justify-content: $justify;
   align-items: center;
+}
+
+@mixin flex-gap($dir: column, $gap: 0) {
+  display: flex;
+  flex-direction: $dir;
+  gap: $gap;
 }

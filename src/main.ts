@@ -1,5 +1,4 @@
 import './scss/main.scss'
-import './scss/pages/home.scss'
 
 init()
 
@@ -14,3 +13,6 @@ if(fieldRef) {
     })
 }
 }
+
+
+// mit feature branch arbeiten!

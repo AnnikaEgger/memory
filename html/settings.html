@@ -6,10 +6,147 @@
     <title>Memory | Settings</title>
   </head>
   <body>
-    <h1>Settings</h1>
+    <div class="headline-wrapper">
+      <h1>Settings</h1>
+      <img src="/assets/icons/line-with-square-long.svg" alt="" />
+    </div>
 
-    <div class="content-wrapper-settings"></div>
+    <div class="content-wrapper-settings">
+      <form class="game-settings">
+        <fieldset class="game-settings__group">
+          <legend>
+            <img src="/assets/icons/palette.svg" alt="Art Palette Icon" />
+            <p>Game themes</p>
+          </legend>
 
+          <div class="options-wrapper">
+            <div class="option">
+              <input
+                type="radio"
+                id="code-vibes-theme"
+                name="game themes"
+                value="Code vibes theme"
+                checked
+              />
+              <label for="code-vibes-theme">Code vibes theme</label>
+              <img
+                src="/assets/icons/line-with-square-small.svg"
+                alt="Line With Square"
+              />
+            </div>
+
+            <div class="option">
+              <input
+                type="radio"
+                id="gaming-theme"
+                name="game themes"
+                value="Gaming theme"
+              />
+              <label for="gaming-theme">Gaming theme</label>
+              <img
+                src="/assets/icons/line-with-square-small.svg"
+                alt="Line With Square"
+              />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="game-settings__group">
+          <legend>
+            <img src="/assets/icons/chess-pawn.svg" alt="Chess Pawn Icon" />
+            <p>Choose player</p>
+          </legend>
+
+          <div class="options-wrapper">
+            <div class="option">
+              <input
+                type="radio"
+                id="color-blue"
+                name="player color"
+                value="blue"
+                checked
+              />
+              <label for="color-blue">Blue</label>
+              <img
+                src="/assets/icons/line-with-square-small.svg"
+                alt="Line With Square"
+              />
+            </div>
+
+            <div class="option">
+              <input
+                type="radio"
+                id="color-orange"
+                name="player color"
+                value="orange"
+              />
+              <label for="color-orange">Orange</label>
+              <img
+                src="/assets/icons/line-with-square-small.svg"
+                alt="Line With Square"
+              />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="game-settings__group">
+          <legend>
+            <img src="/assets/icons/board-size.svg" alt="Cards Icon" />
+            <p>Board size</p>
+          </legend>
+
+          <div class="options-wrapper">
+            <div class="option">
+              <input
+                type="radio"
+                id="16-cards"
+                name="amount of cards"
+                value="16 cards"
+                checked
+              />
+              <label for="16-cards">16 cards</label>
+              <img
+                src="/assets/icons/line-with-square-small.svg"
+                alt="Line With Square"
+              />
+            </div>
+
+            <div class="option">
+              <input
+                type="radio"
+                id="24-cards"
+                name="amount of cards"
+                value="24 cards"
+              />
+              <label for="24-cards">24 cards</label>
+              <img
+                src="/assets/icons/line-with-square-small.svg"
+                alt="Line With Square"
+              />
+            </div>
+
+            <div class="option">
+              <input
+                type="radio"
+                id="32-cards"
+                name="amount of cards"
+                value="32 cards"
+              />
+              <label for="32-cards">32 cards</label>
+              <img
+                src="/assets/icons/line-with-square-small.svg"
+                alt="Line With Square"
+              />
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <div class="settings-summary">
+        <div class="game-preview"></div>
+      </div>
+    </div>
+
+    <script type="module" src="../src/ts/settings.ts"></script>
     <script type="module" src="../src/main.ts"></script>
   </body>
 </html>
