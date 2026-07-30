@@ -1,0 +1,3 @@
+@function infobar-color($color) {
+  @return rgba($color, 0.2);
+}

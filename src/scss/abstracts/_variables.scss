@@ -4,3 +4,27 @@ $color-secondary: #f0ea6e;
 $light-gray: #f6f6f6;
 
 $transition-hover: 150ms ease;
+
+body {
+  --color-bg: #303131;
+  --color-card-1: #286f62;
+  --color-card-2: #4dd5bc;
+
+  &[data-theme="code vibes"] {
+    --color-bg: #303131;
+    --color-card-1: #286f62;
+    --color-card-2: #4dd5bc;
+    --color-infobar: rgba(77, 213, 188, 0.2);
+    --color-player-1: rgba(43, 177, 255, 1);
+    --color-player-2: rgba(245, 142, 57, 1);
+  }
+
+  &[data-theme="gaming"] {
+    --color-bg: #294f60;
+    --color-card-1: #0a2835;
+    --color-card-2: #ed1b76;
+    --color-infobar: rgba(253, 150, 201, 0.2);
+    --color-player-1: rgba(9, 127, 197, 1);
+    --color-player-2: rgba(234, 105, 0, 1);
+  }
+}

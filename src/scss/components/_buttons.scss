@@ -88,3 +88,20 @@ input[type="radio"] {
     }
   }
 }
+
+.exit-game-btn {
+  color: white;
+  @include flex-center(row);
+  border: 1px solid var(--color-card-2);
+  padding: 4px 8px;
+
+  &--code-vibes {
+    gap: 6px;
+    background-color: rgba(77, 213, 188, 0.2);
+  }
+
+  &--gaming {
+    gap: 10px;
+    border-radius: 7px;
+  }
+}
