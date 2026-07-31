@@ -11,7 +11,10 @@
   gap: $gap;
 }
 
-@mixin bg-gradient($color1, $color2) {
+@mixin bg-gradient($color1, $color2, $percent: 0%) {
   background: $color1;
-  background: linear-gradient(to bottom left, $color1 50%, $color2 100%);
+  background: linear-gradient(to bottom left, $color1 $percent, $color2 100%);
+}
+
+@mixin content-limitation() {
 }

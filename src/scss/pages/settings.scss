@@ -4,6 +4,7 @@ body {
   color: $color-primary;
   padding: 120px 170px 0 170px;
   @include flex-center(column, flex-start);
+  margin: 0 max(calc(50dvw - 720px), 0px);
 }
 
 h1 {
@@ -65,7 +66,7 @@ h1 {
 
     img {
       transition: opacity $transition-hover;
-      //   opacity: 1;
+      opacity: 1;
     }
   }
 
@@ -93,42 +94,16 @@ h1 {
 
 .game-preview {
   width: 460px;
-  height: 410px;
-  background-color: black;
+  height: 412px;
   border-radius: 16px;
-  //   padding: 18px 8px;
-  @include flex-gap(column, 80px);
+  @include flex-gap(column);
 
-  &[data-theme="code vibes"] {
-    @include bg-gradient(rgba(48, 49, 49, 1), rgba(109, 109, 109, 1));
-  }
+  @include bg-gradient(var(--color-bg-1), var(--color-bg-2), 30%);
 
   &__cards {
     @include flex-center(row);
     position: relative;
-
-    .card-code-vibes {
-      position: absolute;
-      box-shadow: 4px 4px 5.4px 0 rgba(0, 0, 0, 0.2);
-
-      &--back {
-        rotate: -5.5deg;
-        z-index: 1;
-        top: 0;
-        left: 70px;
-      }
-
-      &--front {
-        rotate: 15deg;
-        top: 40px;
-        right: 80px;
-
-        > img {
-          height: 90px;
-          width: 90px;
-        }
-      }
-    }
+    flex: 1;
   }
 }
 

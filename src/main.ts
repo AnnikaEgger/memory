@@ -33,7 +33,10 @@ fieldsets.forEach((fieldset) => {
 
 function selectTheme(selectedTheme: string) {
   theme = selectedTheme;
-  console.log(theme);
+  const body = document.querySelector("body");
+  if (body) {
+    body.dataset.theme = theme;
+  }
 }
 
 function styleGamePreview() {}

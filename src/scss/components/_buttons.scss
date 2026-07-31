@@ -92,16 +92,33 @@ input[type="radio"] {
 .exit-game-btn {
   color: white;
   @include flex-center(row);
-  border: 1px solid var(--color-card-2);
-  padding: 4px 8px;
 
-  &--code-vibes {
-    gap: 6px;
-    background-color: rgba(77, 213, 188, 0.2);
+  &--settings {
+    padding: 4px 8px;
   }
 
-  &--gaming {
-    gap: 10px;
-    border-radius: 7px;
+  &--game {
+    padding: 12px 20px;
   }
 }
+
+body[data-theme="code vibes"] .exit-game-btn {
+  gap: 6px;
+  background-color: rgba(77, 213, 188, 0.2);
+  border: 1px solid var(--color-card-2);
+}
+
+body[data-theme="gaming"] .exit-game-btn {
+  gap: 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(231, 28, 79, 1);
+
+  svg path {
+    fill: rgba(231, 28, 79, 1);
+  }
+}
+
+// Fragen
+// Schriftgrößen sehr klein im Figma
+// code vibes header mit oder ohne background-color? ist egal, an Live Player orientieren
+// chosen settings + button effekt --> wann? sobald button aktiv

@@ -1,1 +1,15 @@
 @use "../abstracts/load-abstracts" as *;
+
+.card {
+  @include flex-center;
+
+  &--settings {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+
+    &.card--back {
+      z-index: 1;
+    }
+  }
+}

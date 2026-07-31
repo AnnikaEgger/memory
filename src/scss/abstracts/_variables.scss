@@ -4,6 +4,7 @@ $color-secondary: #f0ea6e;
 $light-gray: #f6f6f6;
 
 $transition-hover: 150ms ease;
+// $content-limitation-lr: max($numbers: )
 
 body {
   --color-bg: #303131;
@@ -11,7 +12,8 @@ body {
   --color-card-2: #4dd5bc;
 
   &[data-theme="code vibes"] {
-    --color-bg: #303131;
+    --color-bg-1: rgba(48, 49, 49, 1);
+    --color-bg-2: rgba(109, 109, 109, 1);
     --color-card-1: #286f62;
     --color-card-2: #4dd5bc;
     --color-infobar: rgba(77, 213, 188, 0.2);
@@ -20,9 +22,10 @@ body {
   }
 
   &[data-theme="gaming"] {
-    --color-bg: #294f60;
-    --color-card-1: #0a2835;
-    --color-card-2: #ed1b76;
+    --color-bg-1: rgba(41, 79, 96, 1);
+    --color-bg-2: rgba(32, 134, 180, 1);
+    --color-card-1: #722059;
+    --color-card-2: rgb(237, 27, 118);
     --color-infobar: rgba(253, 150, 201, 0.2);
     --color-player-1: rgba(9, 127, 197, 1);
     --color-player-2: rgba(234, 105, 0, 1);

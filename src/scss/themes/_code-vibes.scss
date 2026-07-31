@@ -1,21 +1,55 @@
 @use "../abstracts/load-abstracts" as *;
 
-$color-card-code-vibes-1: #4dd5bc;
-$color-card-code-vibes-2: #286f62;
+body[data-theme="code vibes"] .card {
+  &--back {
+    @include bg-gradient(var(--color-card-2), var(--color-card-1), 30%);
+  }
 
-.card-code-vibes {
-  @include flex-center;
+  &--front {
+    background-color: rgba(232, 243, 240, 1);
+  }
 
   &--settings {
     width: 180px;
     height: 180px;
-  }
+    box-shadow: 4px 4px 5.4px 0 rgba(0, 0, 0, 0.2);
 
-  &--front {
-    background-color: white;
-  }
+    &.card--back {
+      rotate: -5.5deg;
+      left: 70px;
+    }
 
-  &--back {
-    @include bg-gradient(#4dd5bc, #286f62);
+    &.card--front {
+      rotate: 15deg;
+      right: 100px;
+      margin-top: 25px;
+
+      .img-gaming {
+        display: none;
+      }
+
+      .img-code-vibes {
+        display: unset;
+        height: 90px;
+        width: 90px;
+      }
+    }
   }
 }
+
+// .card-code-vibes {
+//   @include flex-center;
+
+//   &--settings {
+//     width: 180px;
+//     height: 180px;
+//   }
+
+//   &--front {
+//     background-color: white;
+//   }
+
+//   &--back {
+//     @include bg-gradient(#4dd5bc, #286f62);
+//   }
+// }
