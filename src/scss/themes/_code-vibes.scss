@@ -36,20 +36,3 @@ body[data-theme="code vibes"] .card {
     }
   }
 }
-
-// .card-code-vibes {
-//   @include flex-center;
-
-//   &--settings {
-//     width: 180px;
-//     height: 180px;
-//   }
-
-//   &--front {
-//     background-color: white;
-//   }
-
-//   &--back {
-//     @include bg-gradient(#4dd5bc, #286f62);
-//   }
-// }

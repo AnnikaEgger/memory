@@ -1,0 +1,224 @@
+@use "../abstracts/load-abstracts" as *;
+
+.infobar {
+  @include flex-center(row, space-between);
+  color: white;
+  background-color: var(--color-infobar);
+
+  &--settings {
+    padding: 8px 20px;
+    margin: 17px 15px 0 15px;
+    box-shadow: 3px 2px 10.1px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  &--game {
+    padding: 24px;
+    margin: 40px 110px 0px 110px;
+  }
+}
+
+body[data-theme="code vibes"] .infobar {
+  font-family: "Red Rose", sans-serif;
+}
+
+body[data-theme="gaming"] .infobar {
+  font-family: "Orbitron", sans-serif;
+}
+
+.score {
+  @include flex-center(row);
+  font-weight: 700;
+
+  &--settings {
+    padding: 4px 8px;
+  }
+
+  &--game {
+  }
+
+  &__player {
+    @include flex-center(row);
+    &--1 {
+      > p {
+        color: var(--color-player-1);
+      }
+
+      svg path {
+        fill: var(--color-player-1);
+      }
+    }
+
+    &--2 {
+      > p {
+        color: var(--color-player-2);
+      }
+
+      svg path {
+        fill: var(--color-player-2);
+      }
+    }
+  }
+}
+
+body[data-theme="code vibes"] .score {
+  background-color: rgba(134, 233, 214, 0.3);
+
+  &--settings {
+    font-size: 8px;
+    gap: 12px;
+  }
+
+  &--game {
+    padding: 16px 20px;
+  }
+
+  &__player {
+    &--1 {
+    }
+  }
+
+  .player-color {
+    display: unset;
+    margin: 0 2px 0 4px;
+  }
+
+  .current-player-svg {
+    &--code-vibes {
+      display: unset;
+    }
+
+    &--gaming {
+      display: none;
+    }
+  }
+}
+
+body[data-theme="gaming"] .score {
+  background-color: white;
+
+  &--settings {
+    font-size: 10px;
+    border-radius: 4px;
+    gap: 16px;
+  }
+
+  &--game {
+    font-size: 32px;
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .player-color {
+    display: none;
+  }
+
+  .current-player-svg {
+    &--code-vibes {
+      display: none;
+    }
+
+    &--gaming {
+      display: unset;
+      width: 10px;
+      height: 12px;
+    }
+  }
+
+  &__player {
+    gap: 4px;
+    &--1 {
+    }
+  }
+}
+
+.current-player {
+  @include flex-center(row);
+
+  &--settings {
+    gap: 4px;
+    font-size: 8px;
+  }
+  &--game {
+    font-size: 26px;
+    .current-player-svg {
+      &--code-vibes {
+        width: 29px;
+      }
+    }
+  }
+
+  &__svg {
+    &--code-vibes {
+    }
+
+    &--gaming {
+    }
+  }
+}
+
+body[data-theme="code vibes"] .current-player {
+  &--settings {
+    font-size: 10px;
+  }
+  &--game {
+  }
+
+  &__svg {
+    &--code-vibes {
+      display: unset;
+    }
+
+    &--gaming {
+      display: none;
+    }
+  }
+}
+
+body[data-theme="gaming"] .current-player {
+  &--settings {
+    font-size: 8px;
+  }
+
+  &--game {
+  }
+
+  &__svg {
+    &--code-vibes {
+      display: none;
+    }
+
+    &--gaming {
+      display: unset;
+    }
+  }
+}
+
+.exit-game-btn {
+  font-weight: 700;
+  color: white;
+  @include flex-center(row);
+
+  &--settings {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  &--game {
+    font-size: 24px;
+    padding: 12px 20px;
+  }
+}
+
+body[data-theme="code vibes"] .exit-game-btn {
+  &--settings {
+  }
+  &--game {
+  }
+}
+
+body[data-theme="gaming"] .exit-game-btn {
+  &--settings {
+  }
+  &--game {
+  }
+}
