@@ -1,12 +1,19 @@
 @use "../abstracts/load-abstracts" as *;
 
 body[data-theme="gaming"] .card {
-  &--back {
-    @include bg-gradient(var(--color-card-2), var(--color-card-1));
+  &__face {
+    &--front {
+      @include bg-gradient(var(--color-card-2), var(--color-card-1));
+    }
+
+    &--back {
+      background-color: rgba(246, 241, 243, 1);
+    }
   }
 
-  &--front {
-    background-color: rgba(246, 241, 243, 1);
+  &.card--game .card__face {
+    border-radius: 12px;
+    box-shadow: 6px 6px 12px 0px rgba(0, 0, 0, 0.25);
   }
 
   &--settings {
@@ -40,7 +47,5 @@ body[data-theme="gaming"] .card {
   &--game {
     width: 105px;
     height: 120px;
-    border-radius: 12px;
-    box-shadow: 6px 6px 12px 0px rgba(0, 0, 0, 0.25);
   }
 }

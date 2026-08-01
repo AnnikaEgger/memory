@@ -127,17 +127,27 @@
     </dialog>
 
     <template id="card-template-code-vibes">
-      <div class="card card--back card--game">
-        <img
-          class="img-code-vibes code-vibes"
-          src="/assets/icons/developer-akademie.svg"
-          alt="Developer Akademie Icon"
-        />
-      </div>
+      <button class="card card--game">
+        <div class="card__inner">
+          <div class="card__face card__face--back"></div>
+          <div class="card__face card__face--front">
+            <img
+              class="img-code-vibes code-vibes"
+              src="/assets/icons/developer-akademie.svg"
+              alt="Developer Akademie Icon"
+            />
+          </div>
+        </div>
+      </button>
     </template>
 
     <template id="card-template-gaming">
-      <div class="card card--back card--game"></div>
+      <button class="card card--game">
+        <div class="card__inner">
+          <div class="card__face card__face--back"></div>
+          <div class="card__face card__face--front"></div>
+        </div>
+      </button>
     </template>
 
     <script type="module" src="../src/ts/game.ts"></script>

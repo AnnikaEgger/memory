@@ -1,1 +1,9 @@
 @use "../components/main";
+
+body {
+  @include flex-center(column, flex-start);
+}
+
+.confetti {
+  width: 100dvh;
+}

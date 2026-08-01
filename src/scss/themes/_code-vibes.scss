@@ -1,12 +1,14 @@
 @use "../abstracts/load-abstracts" as *;
 
 body[data-theme="code vibes"] .card {
-  &--back {
-    @include bg-gradient(var(--color-card-2), var(--color-card-1), 30%);
-  }
+  &__face {
+    &--front {
+      @include bg-gradient(var(--color-card-2), var(--color-card-1), 30%);
+    }
 
-  &--front {
-    background-color: rgba(232, 243, 240, 1);
+    &--back {
+      background-color: rgba(232, 243, 240, 1);
+    }
   }
 
   &--settings {
