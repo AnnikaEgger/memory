@@ -1,1 +1,86 @@
-@use "../components/main";
+@use "../components/main" as *;
+
+body {
+  background-color: var(--color-bg-1);
+}
+
+.quit-game-popup {
+  position: fixed;
+  top: 50dvh;
+  left: 50dvw;
+  @include flex-center(column);
+  display: none;
+  padding: 40px;
+  gap: 54px;
+  border: none;
+  font-weight: 700;
+  color: var(--color-bg-1);
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+  &__btns-wrapper {
+    @include flex-gap(row, 24px);
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+body[data-theme="code vibes"] .quit-game-popup {
+  background-color: white;
+  width: 540px;
+  font-family: "Red Rose", sans-serif;
+
+  .quit-game-text {
+    font-size: 32px;
+  }
+}
+
+body[data-theme="gaming"] .quit-game-popup {
+  background-color: rgba(240, 246, 249, 1);
+  width: 480px;
+  border-radius: 20px;
+  font-family: "Orbitron", sans-serif;
+
+  .quit-game-text {
+    font-size: 28px;
+  }
+}
+
+.quit-game-btn {
+  &--back {
+    background-color: var(--color-card-2);
+    color: white;
+  }
+
+  &--quit {
+    color: var(--color-card-2);
+  }
+}
+
+body[data-theme="code vibes"] .quit-game-btn {
+  font-family: "Red Rose", sans-serif;
+  padding: 16px 24px;
+
+  &--quit {
+    border: 2px solid var(--color-card-2);
+    background-color: rgba(134, 233, 214, 0.14);
+  }
+}
+
+body[data-theme="gaming"] .quit-game-btn {
+  border-radius: 10px;
+  font-family: "Orbitron", sans-serif;
+  border: 1px solid rgba(231, 28, 79, 1);
+  padding: 12px 20px;
+
+  &--back {
+    background-color: rgba(237, 27, 118, 1);
+  }
+
+  &--quit {
+    background-color: rgba(237, 27, 118, 0.08);
+    border-width: 2px;
+  }
+}

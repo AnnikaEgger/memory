@@ -26,6 +26,7 @@
                 id="code-vibes-theme"
                 name="game themes"
                 value="code vibes"
+                checked
               />
               <label for="code-vibes-theme">Code vibes theme</label>
               <img
@@ -140,12 +141,12 @@
       </form>
 
       <div class="settings-summary">
-        <div data-theme="code vibes" class="game-preview">
+        <div class="game-preview">
           <header class="infobar infobar--settings">
             <div class="score score--settings">
               <div class="score__player score__player--1">
                 <svg
-                  class="current-player-svg--code-vibes"
+                  class="player-svg--code-vibes code-vibes"
                   width="10"
                   height="8"
                   viewBox="0 0 10 8"
@@ -158,7 +159,7 @@
                   />
                 </svg>
                 <svg
-                  class="current-player-svg--gaming"
+                  class="player-svg--gaming gaming"
                   width="22"
                   height="27"
                   viewBox="0 0 22 27"
@@ -170,13 +171,13 @@
                     fill="#1AE5BE"
                   />
                 </svg>
-                <p class="player-color">Blue</p>
+                <p class="player-color code-vibes">Blue</p>
                 <p>0</p>
               </div>
 
               <div class="score__player score__player--2">
                 <svg
-                  class="current-player-svg--code-vibes"
+                  class="player-svg--code-vibes code-vibes"
                   width="10"
                   height="8"
                   viewBox="0 0 10 8"
@@ -189,7 +190,7 @@
                   />
                 </svg>
                 <svg
-                  class="current-player-svg--gaming"
+                  class="player-svg--gaming gaming"
                   width="22"
                   height="27"
                   viewBox="0 0 22 27"
@@ -201,7 +202,7 @@
                     fill="#1AE5BE"
                   />
                 </svg>
-                <p class="player-color">Orange</p>
+                <p class="player-color code-vibes">Orange</p>
                 <p>6</p>
               </div>
             </div>
@@ -210,13 +211,13 @@
               <p>Current player:</p>
 
               <img
-                class="current-player__svg current-player__svg--code-vibes"
+                class="current-player__svg current-player__svg--code-vibes code-vibes"
                 src="../public/assets/icons/code-vibes-theme/label.svg"
                 alt="Blue Label"
               />
 
               <img
-                class="current-player__svg current-player__svg--gaming"
+                class="current-player__svg current-player__svg--gaming gaming"
                 src="../public/assets/icons/games-theme/current-player-chess-pawn.svg"
                 alt="Chess Pawn Icon"
               />
@@ -262,13 +263,51 @@
           </div>
         </div>
 
-        <div class="chosen-settings">
+        <div id="chosen-settings" class="chosen-settings">
           <p id="chosen-theme">Theme</p>
-          <img src="/assets/icons/yellow-slash.svg" alt="Yellow Slash" />
+          <img
+            class="yellow-slash"
+            src="/assets/icons/yellow-slash.svg"
+            alt="Yellow Slash"
+          />
+          <svg
+            class="yellow-line-final"
+            width="50"
+            height="18"
+            viewBox="0 0 50 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M49.6603 8.66028L41 2.28095e-05L32.3397 8.66028L41 17.3205L49.6603 8.66028ZM0 8.66028L0 10.1603L41 10.1603V8.66028V7.16028L0 7.16028L0 8.66028Z"
+              fill="#F0EA6E"
+            />
+          </svg>
           <p id="chosen-player">Player</p>
-          <img src="/assets/icons/yellow-slash.svg" alt="Yellow Slash" />
+          <img
+            class="yellow-slash"
+            src="/assets/icons/yellow-slash.svg"
+            alt="Yellow Slash"
+          />
+          <svg
+            class="yellow-line-final"
+            width="50"
+            height="18"
+            viewBox="0 0 50 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M49.6603 8.66028L41 2.28095e-05L32.3397 8.66028L41 17.3205L49.6603 8.66028ZM0 8.66028L0 10.1603L41 10.1603V8.66028V7.16028L0 7.16028L0 8.66028Z"
+              fill="#F0EA6E"
+            />
+          </svg>
           <p id="chosen-board-size">Board size</p>
-          <a href="game.html" class="btn btn--primary btn-settings">
+          <a
+            id="start-game-btn"
+            href="game.html"
+            class="btn btn--primary btn-settings disabled"
+          >
             <svg
               width="20"
               height="16"

@@ -1,8 +1,36 @@
 @use "./components/main" as *;
 
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: flex;
+}
+
 body {
   font-family: "Almarai", sans-serif;
   height: 100dvh;
+}
+
+body[data-theme="code vibes"] {
+  .gaming {
+    display: none;
+  }
+
+  .code-vibes {
+    display: unset;
+  }
+}
+
+body[data-theme="gaming"] {
+  .code-vibes {
+    display: none;
+  }
+
+  .gaming {
+    display: unset;
+  }
 }
 
 // .score-code-vibes {

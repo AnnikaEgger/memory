@@ -117,6 +117,39 @@ h1 {
   > p {
     font-size: 20px;
   }
+
+  .yellow-line-final {
+    display: none;
+  }
+
+  &--final {
+    .yellow-slash {
+      display: none;
+    }
+
+    .yellow-line-final {
+      display: unset;
+      rotate: 116.5deg;
+      transform: scale(1.2);
+    }
+  }
+}
+
+@keyframes chosenSettingsAnimation {
+  0% {
+  }
+
+  0% {
+  }
+
+  0% {
+  }
+
+  0% {
+  }
+
+  0% {
+  }
 }
 
 .btn-settings {
@@ -134,7 +167,7 @@ h1 {
     transition: rotate $transition-hover;
   }
 
-  &:not(:disabled) {
+  &:not(.disabled) {
     &:hover {
       transform: scale(1.05);
       transition: transform $transition-hover;
@@ -150,7 +183,7 @@ h1 {
     }
   }
 
-  &:disabled {
+  &.disabled {
     background-color: #dbdbd6 !important;
 
     > p {

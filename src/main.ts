@@ -17,6 +17,8 @@ function init() {
       }
     });
   }
+
+  updateSelectedTheme();
 }
 
 const fieldsets = document.querySelectorAll(".game-settings__group");
@@ -24,6 +26,7 @@ const fieldsets = document.querySelectorAll(".game-settings__group");
 fieldsets.forEach((fieldset) => {
   fieldset.addEventListener("change", (event) => {
     const target = event.target as HTMLInputElement;
+    checkIfEverythingIsSelected();
 
     if (fieldset.id === "game-themes")
       selectTheme(target.value as "code vibes" | "gaming");
@@ -64,4 +67,18 @@ function selectBoardSize(selectedBoardSize: "16" | "24" | "32") {
   amountOfCards = Number(selectedBoardSize);
   if (selectedSizeRef)
     selectedSizeRef.textContent = "Board-" + amountOfCards + " Cards";
+}
+
+function checkIfEverythingIsSelected() {
+  const allChecked = Array.from(fieldsets).every((fieldset) => {
+    return fieldset.querySelector("input[type='radio']:checked") !== null;
+  });
+
+  if (allChecked) {
+    console.log(allChecked);
+    document.getElementById("start-game-btn")?.classList.remove("disabled");
+    document
+      .getElementById("chosen-settings")
+      ?.classList.add("chosen-settings--final");
+  }
 }
