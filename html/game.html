@@ -104,6 +104,16 @@
       </button>
     </header>
 
+    <main id="cards-wrapper" class="cards-wrapper">
+      <div class="card card--back card--game">
+        <img
+          class="img-code-vibes code-vibes"
+          src="/assets/icons/developer-akademie.svg"
+          alt="Developer Akademie Icon"
+        />
+      </div>
+    </main>
+
     <dialog id="quit-game-popup" class="quit-game-popup">
       <p class="quit-game-text">Are you sure you want to quit the game?</p>
       <div class="quit-game-popup__btns-wrapper">
@@ -124,7 +134,20 @@
       </div>
     </dialog>
 
+    <template id="card-template-code-vibes">
+      <div class="card card--back card--game">
+        <img
+          class="img-code-vibes code-vibes"
+          src="/assets/icons/developer-akademie.svg"
+          alt="Developer Akademie Icon"
+        />
+      </div>
+    </template>
+
+    <template id="card-template-gaming">
+      <div class="card card--back card--game"></div>
+    </template>
+
     <script type="module" src="../src/ts/game.ts"></script>
-    <script type="module" src="../src/main.ts"></script>
   </body>
 </html>

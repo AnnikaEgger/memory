@@ -21,13 +21,11 @@ body[data-theme="gaming"] .card {
 
     &.card--back {
       rotate: -8deg;
-      // top: 0px;
       left: 80px;
     }
 
     &.card--front {
       rotate: 5.5deg;
-      // top: 40px;
       margin-top: 25px;
       right: 80px;
 
@@ -43,5 +41,6 @@ body[data-theme="gaming"] .card {
     width: 105px;
     height: 120px;
     border-radius: 12px;
+    box-shadow: 6px 6px 12px 0px rgba(0, 0, 0, 0.25);
   }
 }

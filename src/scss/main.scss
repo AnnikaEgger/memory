@@ -32,31 +32,3 @@ body[data-theme="gaming"] {
     display: unset;
   }
 }
-
-// .score-code-vibes {
-//   @include flex-center(row);
-//   background-color: rgba(134, 233, 214, 0.3);
-//   padding: 4px 8px;
-//   gap: 10px;
-
-//   svg {
-//     margin-right: 2px;
-//   }
-
-//   .player-color {
-//     margin-right: 4px;
-//   }
-
-//   .score-player {
-//     @include flex-center(row);
-//     font-size: 14px;
-
-//     &--1 {
-//       color: var(--color-player-1);
-//     }
-
-//     &--2 {
-//       color: var(--color-player-2);
-//     }
-//   }
-// }

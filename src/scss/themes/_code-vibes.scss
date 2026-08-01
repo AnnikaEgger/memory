@@ -24,15 +24,15 @@ body[data-theme="code vibes"] .card {
       right: 100px;
       margin-top: 25px;
 
-      .img-gaming {
-        display: none;
-      }
-
       .img-code-vibes {
-        display: unset;
         height: 90px;
         width: 90px;
       }
     }
+  }
+
+  &--game {
+    width: 120px;
+    height: 120px;
   }
 }
