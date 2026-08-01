@@ -2,6 +2,16 @@
 
 body {
   background-color: var(--color-bg-1);
+  @include flex-center(column, flex-start);
+
+  &:has(.cards-16),
+  &:has(.cards-24) {
+    gap: 54px;
+  }
+
+  &:has(.cards-36) {
+    gap: 20px;
+  }
 }
 
 .quit-game-popup {
@@ -82,5 +92,20 @@ body[data-theme="gaming"] .quit-game-btn {
   &--quit {
     background-color: rgba(237, 27, 118, 0.08);
     border-width: 2px;
+  }
+}
+
+.cards-wrapper {
+  display: grid;
+
+  &.cards-16 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  &.cards-24,
+  &.cards-36 {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
   }
 }

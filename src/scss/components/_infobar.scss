@@ -14,6 +14,7 @@
   &--game {
     padding: 24px;
     margin: 40px 110px 0px 110px;
+    width: calc(100% - 220px);
   }
 }
 
@@ -24,6 +25,10 @@ body[data-theme="code vibes"] .infobar {
 body[data-theme="gaming"] .infobar {
   font-family: "Orbitron", sans-serif;
   border-radius: 10px;
+}
+
+body:has(.cards-36) .infobar {
+  margin: 10px 110px 0px 110px;
 }
 
 .score {

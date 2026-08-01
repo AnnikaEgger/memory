@@ -33,8 +33,14 @@ fieldsets.forEach((fieldset) => {
       selectPlayer(target.value as "blue" | "orange");
     else if (fieldset.id === "board-sizes")
       selectBoardSize(target.value as "16" | "24" | "32");
+
+    setGameConfigToLocalStorage();
   });
 });
+
+function setGameConfigToLocalStorage() {
+  localStorage.setItem("gameConfig", JSON.stringify(gameConfig));
+}
 
 function selectTheme(selectedTheme: "code vibes" | "gaming") {
   gameConfig.theme = selectedTheme;

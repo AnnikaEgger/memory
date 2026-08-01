@@ -10,7 +10,21 @@ const dialog = document.getElementById("quit-game-popup") as HTMLDialogElement;
 init();
 
 function init() {
+  getGameConfigFromLocalStorage();
+  const board = document.getElementById("cards-wrapper");
+  if (board) board.classList.add(`cards-${gameConfig.amountOfCards}`);
+  document.querySelector("body")?.setAttribute("data-theme", gameConfig.theme);
   createCards();
+}
+
+function getGameConfigFromLocalStorage() {
+  const storedConfig = localStorage.getItem("gameConfig");
+  if (storedConfig) {
+    const parsedConfig = JSON.parse(storedConfig);
+    gameConfig.theme = parsedConfig.theme;
+    gameConfig.playerColor = parsedConfig.playerColor;
+    gameConfig.amountOfCards = parsedConfig.amountOfCards;
+  }
 }
 
 document
