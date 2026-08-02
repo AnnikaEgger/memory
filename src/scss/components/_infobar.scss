@@ -3,7 +3,6 @@
 .infobar {
   @include flex-center(row, space-between);
   color: white;
-  background-color: var(--color-infobar);
 
   &--settings {
     padding: 8px 20px;
@@ -25,6 +24,7 @@ body[data-theme="code vibes"] .infobar {
 body[data-theme="gaming"] .infobar {
   font-family: "Orbitron", sans-serif;
   border-radius: 10px;
+  background-color: var(--color-infobar);
 }
 
 body:has(.cards-36) .infobar {
@@ -194,7 +194,7 @@ body[data-theme="gaming"] .current-player {
 
 body[data-theme="code vibes"] .exit-game-btn {
   gap: 6px;
-  background-color: rgba(77, 213, 188, 0.2);
+  background-color: rgba(134, 233, 214, 0.14);
   border: 1px solid var(--color-card-2);
 
   &--settings {
@@ -204,6 +204,15 @@ body[data-theme="code vibes"] .exit-game-btn {
     svg {
       width: 30px;
       height: 30px;
+    }
+
+    &:hover {
+      box-shadow: 4px 4px 6px 0px rgba(77, 213, 188, 0.2);
+      outline: 2px solid var(--color-card-2);
+      background-color: rgba(134, 233, 214, 0.26);
+      svg path {
+        box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.25);
+      }
     }
   }
 }
@@ -224,6 +233,15 @@ body[data-theme="gaming"] .exit-game-btn {
     svg {
       width: 25.75px;
       height: 22.5px;
+    }
+
+    &:hover {
+      background-color: rgba(237, 27, 118, 0.14);
+      box-shadow: 3px 3px 5px 0px rgba(47, 46, 46, 0.2);
+      svg path {
+        box-shadow: 3px 3px 4.5px 0px rgba(0, 0, 0, 0.35);
+        fill: rgba(231, 28, 79, 1);
+      }
     }
   }
 }

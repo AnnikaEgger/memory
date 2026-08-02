@@ -4,6 +4,11 @@ button {
   font: inherit;
   color: inherit;
   cursor: pointer;
+  transition: all 125ms ease-in-out;
+}
+
+button:hover {
+  transition: all 125ms ease-in-out;
 }
 
 .btn {

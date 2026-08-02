@@ -9,6 +9,10 @@ body[data-theme="code vibes"] .card {
     &--back {
       background-color: rgba(232, 243, 240, 1);
     }
+
+    &--matched {
+      border: 5px solid var(--color-card-2);
+    }
   }
 
   &--settings {

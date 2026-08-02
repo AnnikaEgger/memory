@@ -73,9 +73,23 @@ body[data-theme="code vibes"] .quit-game-btn {
   font-family: "Red Rose", sans-serif;
   padding: 16px 24px;
 
+  &--back {
+    border: 3px solid var(--color-card-2);
+
+    &:hover {
+      border-color: rgba(58, 188, 164, 1);
+      background-color: rgba(102, 207, 188, 0.7);
+    }
+  }
+
   &--quit {
     border: 2px solid var(--color-card-2);
     background-color: rgba(134, 233, 214, 0.14);
+
+    &:hover {
+      outline: 1px solid var(--color-card-2);
+      box-shadow: 4px 4px 6px 0px rgba(77, 213, 188, 0.2);
+    }
   }
 }
 
@@ -85,13 +99,28 @@ body[data-theme="gaming"] .quit-game-btn {
   border: 1px solid rgba(231, 28, 79, 1);
   padding: 12px 20px;
 
+  &:hover {
+    box-shadow: 3px 3px 5px 0px rgba(47, 46, 46, 0.2);
+  }
+
   &--back {
     background-color: rgba(237, 27, 118, 1);
+    border: 2px solid rgba(237, 27, 118, 1);
+
+    &:hover {
+      border-color: rgba(231, 28, 79, 1);
+      color: rgba(231, 28, 79, 1);
+      background-color: rgba(242, 199, 218, 0.08);
+    }
   }
 
   &--quit {
     background-color: rgba(237, 27, 118, 0.08);
     border-width: 2px;
+
+    &:hover {
+      outline: 1px solid rgba(231, 28, 79, 1);
+    }
   }
 }
 
