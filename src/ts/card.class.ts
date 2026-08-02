@@ -1,35 +1,42 @@
 class Card {
-  constructor() {}
+  div: HTMLDivElement;
 
-  createDivElement(theme: string) {
-    const template = document.getElementById(
-      "card-template-" + theme,
-    ) as HTMLTemplateElement;
-
-    if (template) {
-      const cardClone = template.content.cloneNode(true) as HTMLElement;
-      document.getElementById("cards-wrapper")?.appendChild(cardClone);
-    }
-
-    const div = document.createElement("div");
-    div.classList.add("card", "card--game");
-    div.innerHTML = this.cardCodeVibesInnerHTML();
+  constructor() {
+    this.div = document.createElement("div");
   }
 
-  cardCodeVibesInnerHTML(): string {
+  createDivElement() {
+    this.div.classList.add("card", "card--game");
+    document.getElementById("cards-wrapper")?.appendChild(this.div);
+  }
+}
+
+export class CardCodeVibes extends Card {
+  constructor($src: string, $altText: string) {
+    super();
+    this.createCards($src, $altText);
+  }
+
+  createCards(src: string, altText: string) {
+    super.createDivElement();
+    this.div.innerHTML = this.cardCodeVibesInnerHTML(src, altText);
+  }
+
+  cardCodeVibesInnerHTML($src: string, $altText: string): string {
     return `
     <button class="card card--game">
         <div class="card__inner">
           <div class="card__face card__face--back">
              <img
               class="img-code-vibes code-vibes"
-              src="/assets/icons/developer-akademie.svg"
-              alt="Developer Akademie Icon"
-            /></div>
+              src="../public/assets/icons/code-vibes-theme/${$src}"
+              alt="${$altText}"
+            />
+            </div>
           <div class="card__face card__face--front">
-            <img
+               <img
               class="img-code-vibes code-vibes"
-              src="/assets/icons/developer-akademie.svg"
+              src="../public/assets/icons/developer-akademie.svg"
               alt="Developer Akademie Icon"
             />
           </div>
@@ -38,16 +45,36 @@ class Card {
   }
 }
 
-export class CardCodeVibes extends Card {
-  constructor() {
-    super();
-    this.createDivElement("code-vibes");
-  }
-}
-
 export class CardGaming extends Card {
-  constructor() {
+  constructor($src: string, $altText: string) {
     super();
-    this.createDivElement("gaming");
+    this.createCards($src, $altText);
+  }
+
+  createCards(src: string, altText: string) {
+    super.createDivElement();
+    this.div.innerHTML = this.cardGamingInnerHTML(src, altText);
+  }
+
+  cardGamingInnerHTML($src: string, $altText: string): string {
+    return `
+    <button class="card card--game">
+        <div class="card__inner">
+          <div class="card__face card__face--back">
+             <img
+              class="img-gaming gaming"
+              src="../public/assets/icons/games-theme/${$src}"
+              alt="${$altText}"
+            />
+            </div>
+          <div class="card__face card__face--front">
+               <img
+              class="img-gaming gaming"
+              src="../public/assets/icons/developer-akademie.svg"
+              alt="Developer Akademie Icon"
+            />
+          </div>
+        </div>
+      </button>`;
   }
 }
