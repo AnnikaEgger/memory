@@ -11,6 +11,10 @@ import { cards } from "./game-config";
 const dialog = document.getElementById("quit-game-popup") as HTMLDialogElement;
 const board = document.getElementById("cards-wrapper");
 
+let scoreBlue = 0;
+let scoreOrange = 0;
+let currentPlayer = gameConfig.playerColor;
+
 const CARD_ICONS = {
   code_vibes: [
     "angular.svg",
@@ -106,6 +110,7 @@ function init() {
   document.querySelector("body")?.setAttribute("data-theme", gameConfig.theme);
   createCards();
   shuffleCardsAndAppendToBoard();
+  styleCurrentPlayer();
 }
 
 function getGameConfigFromLocalStorage() {
@@ -207,6 +212,8 @@ board?.addEventListener("click", (event) => {
 
       if (flippedCards.length >= 2) {
         checkForMatch(flippedCards);
+
+        setTimeout(toggleCurrentPlayer, 500);
       }
     }
     timeout = false;
@@ -231,6 +238,8 @@ function handleMatch(flippedCards: Card[]) {
     card.cardEl.classList.add("card--matched");
     card.isSolved = true;
   });
+
+  updateScore();
 }
 
 function handleNoMatch(flippedCards: Card[]) {
@@ -239,4 +248,26 @@ function handleNoMatch(flippedCards: Card[]) {
       card.cardEl.classList.remove("is-flipped");
     });
   }, 500);
+}
+
+function toggleCurrentPlayer() {
+  currentPlayer = currentPlayer === "blue" ? "orange" : "blue";
+  styleCurrentPlayer();
+}
+
+function styleCurrentPlayer() {
+  document.querySelectorAll(".current-player__svg").forEach((svg) => {
+    svg.classList.remove("blue", "orange");
+    svg.classList.add(currentPlayer);
+  });
+}
+
+function updateScore() {
+  if (currentPlayer === "blue") scoreBlue++;
+  else if (currentPlayer === "orange") scoreOrange++;
+
+  const scoreBlueRef = document.getElementById("score-player-blue");
+  const scoreOrangeRef = document.getElementById("score-player-orange");
+  if (scoreBlueRef) scoreBlueRef.innerText = scoreBlue.toString();
+  if (scoreOrangeRef) scoreOrangeRef.innerText = scoreOrange.toString();
 }

@@ -140,15 +140,37 @@ body[data-theme="gaming"] .score {
     .current-player__svg {
       &--code-vibes {
         width: 29px;
+        height: auto;
       }
     }
   }
 
   &__svg {
     &--code-vibes {
+      &.blue {
+        > path {
+          fill: var(--color-player-1);
+        }
+      }
+      &.orange {
+        > path {
+          fill: var(--color-player-2);
+        }
+      }
     }
 
     &--gaming {
+      &.blue {
+        > rect {
+          fill: var(--color-player-1);
+        }
+      }
+
+      &.orange {
+        > rect {
+          fill: var(--color-player-2);
+        }
+      }
     }
   }
 }
