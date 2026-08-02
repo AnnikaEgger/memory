@@ -19,12 +19,14 @@ body[data-theme="code vibes"] .card {
     &.card--back {
       rotate: -5.5deg;
       left: 70px;
+      @include bg-gradient(var(--color-card-2), var(--color-card-1), 30%);
     }
 
     &.card--front {
       rotate: 15deg;
       right: 100px;
       margin-top: 25px;
+      background-color: rgba(232, 243, 240, 1);
 
       .img-code-vibes {
         height: 90px;

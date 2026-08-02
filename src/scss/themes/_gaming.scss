@@ -29,12 +29,14 @@ body[data-theme="gaming"] .card {
     &.card--back {
       rotate: -8deg;
       left: 80px;
+      @include bg-gradient(var(--color-card-2), var(--color-card-1));
     }
 
     &.card--front {
       rotate: 5.5deg;
       margin-top: 25px;
       right: 80px;
+      background-color: rgba(246, 241, 243, 1);
 
       .img-gaming {
         display: unset;

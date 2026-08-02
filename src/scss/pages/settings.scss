@@ -113,6 +113,8 @@ h1 {
   height: 80px;
   background-color: $light-gray;
   padding: 14px 20px;
+  transform-origin: right center;
+  will-change: transform;
 
   > p {
     font-size: 20px;
@@ -123,6 +125,8 @@ h1 {
   }
 
   &--final {
+    animation: flummiWidth 600ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+
     .yellow-slash {
       display: none;
     }
@@ -131,24 +135,65 @@ h1 {
       display: unset;
       rotate: 116.5deg;
       transform: scale(1.2);
+      animation: retroSpawn 0.6s steps(1, end) forwards;
     }
   }
 }
 
-@keyframes chosenSettingsAnimation {
+@keyframes flummiWidth {
   0% {
+    transform: scaleX(1);
   }
-
-  0% {
+  30% {
+    transform: scaleX(1.25);
   }
-
-  0% {
+  50% {
+    transform: scaleX(0.95);
   }
-
-  0% {
+  70% {
+    transform: scaleX(1.08);
   }
+  85% {
+    transform: scaleX(0.98);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
 
+@keyframes retroSpawn {
   0% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0;
+  }
+  23% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  38% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0;
+  }
+  52% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
