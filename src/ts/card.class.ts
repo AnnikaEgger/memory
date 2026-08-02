@@ -1,4 +1,6 @@
-class Card {
+import { cards } from "./game-config";
+
+export class Card {
   div: HTMLDivElement;
 
   constructor() {
@@ -7,7 +9,8 @@ class Card {
 
   createDivElement() {
     this.div.classList.add("card", "card--game");
-    document.getElementById("cards-wrapper")?.appendChild(this.div);
+    // document.getElementById("cards-wrapper")?.appendChild(this.div);
+    cards.push(this);
   }
 }
 

@@ -1,9 +1,11 @@
 import "../scss/main.scss";
 import "../scss/pages/game-screen.scss";
 
+import { Card } from "./card.class";
 import { CardCodeVibes } from "./card.class";
 import { CardGaming } from "./card.class";
 import { gameConfig } from "./game-config";
+import { cards } from "./game-config";
 
 const dialog = document.getElementById("quit-game-popup") as HTMLDialogElement;
 
@@ -34,19 +36,19 @@ const CARD_ICONS = {
     "card.svg",
     "coin.svg",
     "cone-circle.svg",
-    "cone-square.svg",
-    "cone-triangel.svg",
     "controller.svg",
     "creeper.svg",
     "cubes.png",
     "gameboy.svg",
     "labyrinth.svg",
     "level-up.svg",
+    "cone-square.svg",
     "pacman-yellow.svg",
     "pacman.svg",
     "play-btn.svg",
     "puzzle.svg",
     "snake.svg",
+    "cone-triangle.svg",
     "toad.svg",
   ],
 };
@@ -77,19 +79,19 @@ const CARD_ICONS_ALT_TEXTS = {
     "Card Icon",
     "Coin Icon",
     "Cone Circle Icon",
-    "Cone Square Icon",
-    "Cone Triangle Icon",
     "Controller Icon",
     "Creeper Icon",
     "Cubes Icon",
     "Gameboy Icon",
     "Labyrinth Icon",
     "Level Up Icon",
+    "Cone Square Icon",
     "Yellow Pacman Icon",
     "Pacman Icon",
     "Play Button Icon",
     "Puzzle Icon",
     "Snake Icon",
+    "Cone Triangle Icon",
     "Toad Icon",
   ],
 };
@@ -102,6 +104,7 @@ function init() {
   if (board) board.classList.add(`cards-${gameConfig.amountOfCards}`);
   document.querySelector("body")?.setAttribute("data-theme", gameConfig.theme);
   createCards();
+  shuffleCardsAndAppendToBoard();
 }
 
 function getGameConfigFromLocalStorage() {
@@ -167,3 +170,20 @@ document.querySelectorAll(".card").forEach((card) => {
     card.classList.toggle("is-flipped");
   });
 });
+
+function shuffleCardsAndAppendToBoard() {
+  const board = document.getElementById("cards-wrapper");
+  if (board) {
+    const shuffledCards = [...cards];
+    for (let i = shuffledCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledCards[i], shuffledCards[j]] = [
+        shuffledCards[j],
+        shuffledCards[i],
+      ];
+    }
+    shuffledCards.forEach((card) => {
+      board.appendChild(card.div);
+    });
+  }
+}
