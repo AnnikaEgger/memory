@@ -6,8 +6,10 @@ import { CardCodeVibes } from "./card.class";
 import { CardGaming } from "./card.class";
 import { gameConfig } from "./game-config";
 import { cards } from "./game-config";
+// import { IconName } from "./literals";
 
 const dialog = document.getElementById("quit-game-popup") as HTMLDialogElement;
+const board = document.getElementById("cards-wrapper");
 
 const CARD_ICONS = {
   code_vibes: [
@@ -100,7 +102,6 @@ init();
 
 function init() {
   getGameConfigFromLocalStorage();
-  const board = document.getElementById("cards-wrapper");
   if (board) board.classList.add(`cards-${gameConfig.amountOfCards}`);
   document.querySelector("body")?.setAttribute("data-theme", gameConfig.theme);
   createCards();
@@ -165,14 +166,15 @@ function createCards() {
   }
 }
 
+let timeout: boolean = false;
+
 document.querySelectorAll(".card").forEach((card) => {
   card.addEventListener("click", () => {
-    card.classList.toggle("is-flipped");
+    if (!timeout) card.classList.toggle("is-flipped");
   });
 });
 
 function shuffleCardsAndAppendToBoard() {
-  const board = document.getElementById("cards-wrapper");
   if (board) {
     const shuffledCards = [...cards];
     for (let i = shuffledCards.length - 1; i > 0; i--) {
@@ -183,7 +185,58 @@ function shuffleCardsAndAppendToBoard() {
       ];
     }
     shuffledCards.forEach((card) => {
-      board.appendChild(card.div);
+      board.appendChild(card.cardEl);
     });
   }
+}
+
+board?.addEventListener("click", (event) => {
+  setTimeout(() => {
+    timeout = true;
+    if (
+      event.target instanceof HTMLButtonElement &&
+      event.target.classList.contains("card")
+    ) {
+      let flippedCards: Card[] = [];
+
+      cards.forEach((card) => {
+        if (card.cardEl.classList.contains("is-flipped") && !card.isSolved) {
+          flippedCards.push(card);
+        }
+      });
+
+      if (flippedCards.length >= 2) {
+        checkForMatch(flippedCards);
+      }
+    }
+    timeout = false;
+  }, 250);
+});
+
+function checkForMatch(flippedCards: Card[]) {
+  const card1 = flippedCards[0].icon;
+  const card2 = flippedCards[1].icon;
+
+  if (isMatch(card1, card2)) {
+    handleMatch(flippedCards);
+  } else handleNoMatch(flippedCards);
+}
+
+function isMatch($icon1: string, $icon2: string) {
+  return $icon1 === $icon2;
+}
+
+function handleMatch(flippedCards: Card[]) {
+  flippedCards.forEach((card) => {
+    card.cardEl.classList.add("card--matched");
+    card.isSolved = true;
+  });
+}
+
+function handleNoMatch(flippedCards: Card[]) {
+  setTimeout(() => {
+    flippedCards.forEach((card) => {
+      card.cardEl.classList.remove("is-flipped");
+    });
+  }, 500);
 }

@@ -1,6 +1,13 @@
 @use "../abstracts/load-abstracts" as *;
 
 body[data-theme="code vibes"] .card {
+  &--matched {
+    .card__face {
+      border: 5px solid var(--color-card-2);
+      box-shadow: 6px 6px 8px 0px rgba(77, 213, 188, 0.3);
+    }
+  }
+
   &__face {
     &--front {
       @include bg-gradient(var(--color-card-2), var(--color-card-1), 30%);
@@ -8,10 +15,6 @@ body[data-theme="code vibes"] .card {
 
     &--back {
       background-color: rgba(232, 243, 240, 1);
-    }
-
-    &--matched {
-      border: 5px solid var(--color-card-2);
     }
   }
 
