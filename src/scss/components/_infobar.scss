@@ -7,7 +7,6 @@
   &--settings {
     padding: 8px 20px;
     margin: 17px 15px 0 15px;
-    box-shadow: 3px 2px 10.1px 0 rgba(0, 0, 0, 0.2);
   }
 
   &--game {
@@ -25,6 +24,10 @@ body[data-theme="gaming"] .infobar {
   font-family: "Orbitron", sans-serif;
   border-radius: 10px;
   background-color: var(--color-infobar);
+
+  &__settings {
+    box-shadow: 3px 2px 10.1px 0 rgba(0, 0, 0, 0.2);
+  }
 }
 
 body:has(.cards-36) .infobar {
@@ -62,6 +65,13 @@ body:has(.cards-36) .infobar {
       svg path {
         fill: var(--color-player-2);
       }
+    }
+
+    #score-player-blue,
+    #score-player-orange {
+      display: inline-block;
+      text-align: center;
+      width: 1ch;
     }
   }
 }
@@ -246,6 +256,10 @@ body[data-theme="gaming"] .exit-game-btn {
 
   &--settings {
     border-radius: 7px;
+
+    svg path {
+      fill: rgba(231, 28, 79, 1);
+    }
   }
 
   &--game {

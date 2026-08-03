@@ -21,6 +21,12 @@ function init() {
 }
 
 const fieldsets = document.querySelectorAll(".game-settings__group");
+const startGameBtn = document.getElementById(
+  "start-game-btn",
+) as HTMLButtonElement;
+startGameBtn?.addEventListener("click", () => {
+  location.href = "game.html";
+});
 
 fieldsets.forEach((fieldset) => {
   fieldset.addEventListener("change", (event) => {
@@ -48,6 +54,7 @@ function selectTheme(selectedTheme: "code vibes" | "gaming") {
   if (body) {
     body.dataset.theme = gameConfig.theme;
   }
+  themeBefore = gameConfig.theme;
   updateSelectedTheme();
 }
 
@@ -84,10 +91,52 @@ function checkIfEverythingIsSelected() {
   });
 
   if (allChecked) {
-    console.log(allChecked);
-    document.getElementById("start-game-btn")?.classList.remove("disabled");
+    startGameBtn.disabled = false;
     document
       .getElementById("chosen-settings")
       ?.classList.add("chosen-settings--final");
   }
 }
+
+let themeBefore: string;
+let hasTriggered = false;
+
+const body = document.getElementById("settings-body");
+
+document
+  .getElementById("code-vibes-option")
+  ?.addEventListener("mouseenter", () => {
+    if (hasTriggered) return;
+    hasTriggered = true;
+
+    if (body) {
+      if (body.dataset.theme) themeBefore = body?.dataset.theme;
+      body.dataset.theme = "code vibes";
+    }
+  });
+
+document
+  .getElementById("code-vibes-option")
+  ?.addEventListener("mouseleave", () => {
+    hasTriggered = false;
+    if (body) body.dataset.theme = themeBefore;
+  });
+
+document
+  .getElementById("game-theme-option")
+  ?.addEventListener("mouseenter", () => {
+    if (hasTriggered) return;
+    hasTriggered = true;
+
+    if (body) {
+      if (body.dataset.theme) themeBefore = body?.dataset.theme;
+      body.dataset.theme = "gaming";
+    }
+  });
+
+document
+  .getElementById("game-theme-option")
+  ?.addEventListener("mouseleave", () => {
+    hasTriggered = false;
+    if (body) body.dataset.theme = themeBefore;
+  });

@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory | Settings</title>
+    <link
+      rel="shortcut icon"
+      href="/assets/icons/controller-yellow.svg"
+      type="image/x-icon"
+    />
   </head>
-  <body data-theme="code vibes">
+  <body id="settings-body" data-theme="code vibes">
     <div class="headline-wrapper">
       <h1>Settings</h1>
       <img src="/assets/icons/line-with-square-long.svg" alt="" />
@@ -20,7 +25,7 @@
           </legend>
 
           <div class="options-wrapper">
-            <div class="option">
+            <div id="code-vibes-option" class="option">
               <input
                 type="radio"
                 id="code-vibes-theme"
@@ -28,21 +33,21 @@
                 value="code vibes"
                 checked
               />
-              <label for="code-vibes-theme">Code vibes theme</label>
+              <label for="code-vibes-theme">Code Vibes theme</label>
               <img
                 src="/assets/icons/line-with-square-small.svg"
                 alt="Line With Square"
               />
             </div>
 
-            <div class="option">
+            <div id="game-theme-option" class="option">
               <input
                 type="radio"
                 id="gaming-theme"
                 name="game themes"
                 value="gaming"
               />
-              <label for="gaming-theme">Gaming theme</label>
+              <label for="gaming-theme">Game theme</label>
               <img
                 src="/assets/icons/line-with-square-small.svg"
                 alt="Line With Square"
@@ -212,13 +217,13 @@
 
               <img
                 class="current-player__svg current-player__svg--code-vibes code-vibes"
-                src="../public/assets/icons/code-vibes-theme/label.svg"
+                src="/assets/icons/code-vibes-theme/label.svg"
                 alt="Blue Label"
               />
 
               <img
                 class="current-player__svg current-player__svg--gaming gaming"
-                src="../public/assets/icons/games-theme/current-player-chess-pawn.svg"
+                src="/assets/icons/games-theme/current-player-chess-pawn.svg"
                 alt="Chess Pawn Icon"
               />
             </div>
@@ -256,7 +261,7 @@
               />
               <img
                 class="img-gaming gaming"
-                src="../public/assets/icons/games-theme/cubes.png"
+                src="/assets/icons/games-theme/cubes.png"
                 alt="two cubes"
               />
             </div>
@@ -303,9 +308,9 @@
             />
           </svg>
           <p id="chosen-board-size">Board size</p>
-          <a
+          <button
+            disabled
             id="start-game-btn"
-            href="game.html"
             class="btn btn--primary btn-settings disabled"
           >
             <svg
@@ -321,7 +326,7 @@
               />
             </svg>
             <p>Start</p>
-          </a>
+          </button>
         </div>
       </div>
     </div>

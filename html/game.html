@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Memory | Board</title>
+    <link
+      rel="shortcut icon"
+      href="/assets/icons/controller-yellow.svg"
+      type="image/x-icon"
+    />
   </head>
   <body data-theme="code vibes">
     <header class="infobar infobar--game">
@@ -121,7 +126,9 @@
       </button>
     </header>
 
-    <main id="cards-wrapper" class="cards-wrapper"></main>
+    <main>
+      <div id="cards-wrapper" class="cards-wrapper"></div>
+    </main>
 
     <dialog id="quit-game-popup" class="quit-game-popup">
       <p class="quit-game-text">Are you sure you want to quit the game?</p>
@@ -133,10 +140,7 @@
           <p class="code-vibes">Back to game</p>
           <p class="gaming">No, back to game</p>
         </button>
-        <a
-          class="btn quit-game-btn quit-game-btn--quit"
-          href="../html/settings.html"
-        >
+        <a class="btn quit-game-btn quit-game-btn--quit" href="../index.html">
           <p class="code-vibes">Exit game</p>
           <p class="gaming">Yes, quit game</p>
         </a>

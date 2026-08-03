@@ -2,7 +2,7 @@
 
 body {
   color: $color-primary;
-  padding: 120px 170px 0 170px;
+  padding: 120px 100px 0 170px;
   @include flex-center(column, flex-start);
   margin: 0 max(calc(50dvw - 720px), 0px);
 }
@@ -60,6 +60,14 @@ h1 {
   }
 
   &:hover {
+    cursor: pointer;
+
+    input,
+    label,
+    img {
+      cursor: pointer;
+    }
+
     label {
       font-weight: 700;
     }
@@ -90,6 +98,12 @@ h1 {
   @include flex-center(column);
   align-items: end;
   gap: 45px;
+  // margin-right: 106px;
+
+  &:has(.chosen-settings--final) {
+    // margin-right: 0;
+    // align-items: center;
+  }
 }
 
 .game-preview {
@@ -97,6 +111,7 @@ h1 {
   height: 412px;
   border-radius: 16px;
   @include flex-gap(column);
+  margin-right: 106px;
 
   @include bg-gradient(var(--color-bg-1), var(--color-bg-2), 30%);
 
@@ -113,8 +128,9 @@ h1 {
   height: 80px;
   background-color: $light-gray;
   padding: 14px 20px;
-  transform-origin: right center;
+  transform-origin: left center;
   will-change: transform;
+  margin-right: 106px;
 
   > p {
     font-size: 20px;
@@ -126,6 +142,7 @@ h1 {
 
   &--final {
     animation: flummiWidth 600ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    margin-right: 0;
 
     .yellow-slash {
       display: none;
@@ -133,8 +150,7 @@ h1 {
 
     .yellow-line-final {
       display: unset;
-      rotate: 116.5deg;
-      transform: scale(1.2);
+      transform: rotate(116.5deg) scale(1.2);
       animation: retroSpawn 0.6s steps(1, end) forwards;
     }
   }
@@ -143,21 +159,23 @@ h1 {
 @keyframes flummiWidth {
   0% {
     transform: scaleX(1);
+    margin-right: 106px;
   }
   30% {
-    transform: scaleX(1.25);
+    transform: scaleX(1.1);
   }
   50% {
-    transform: scaleX(0.95);
+    transform: scaleX(0.97);
   }
   70% {
-    transform: scaleX(1.08);
+    transform: scaleX(1.04);
   }
   85% {
-    transform: scaleX(0.98);
+    transform: scaleX(0.99);
   }
   100% {
     transform: scaleX(1);
+    margin-right: 0;
   }
 }
 
@@ -212,7 +230,7 @@ h1 {
     transition: rotate $transition-hover;
   }
 
-  &:not(.disabled) {
+  &:not(:disabled) {
     &:hover {
       transform: scale(1.05);
       transition: transform $transition-hover;
@@ -228,8 +246,9 @@ h1 {
     }
   }
 
-  &.disabled {
+  &:disabled {
     background-color: #dbdbd6 !important;
+    cursor: not-allowed;
 
     > p {
       color: #a3a1a1;

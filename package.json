@@ -13,6 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@types/node": "^26.1.2",
     "sass": "^1.102.0",
     "typescript": "^7.0.2",
     "vite": "^8.1.5"

@@ -16,7 +16,7 @@ let scoreOrange = 0;
 const dialog = document.getElementById("quit-game-popup") as HTMLDialogElement;
 const board = document.getElementById("cards-wrapper");
 
-let currentPlayer = gameConfig.playerColor;
+let currentPlayer: string;
 
 const CARD_ICONS = {
   code_vibes: [
@@ -109,6 +109,7 @@ init();
 
 function init() {
   Global.getGameConfigFromLocalStorage();
+  currentPlayer = gameConfig.playerColor;
   if (board) board.classList.add(`cards-${gameConfig.amountOfCards}`);
   Global.setDataTheme();
   createCards();
@@ -126,7 +127,7 @@ document
 
 function showQuitGamePopup() {
   dialog.showModal();
-  dialog.style.display = "flex";
+  dialog.classList.add("fly-in");
 }
 
 dialog.addEventListener("click", (event) => {
@@ -137,11 +138,11 @@ dialog.addEventListener("click", (event) => {
 
 function closeQuitGamePopup() {
   dialog.close();
-  dialog.style.display = "none";
+  dialog.classList.remove("fly-in");
 }
 
 function createCards() {
-  for (let index = 0; index < 4; index++) {
+  for (let index = 0; index < gameConfig.amountOfCards / 2; index++) {
     if (gameConfig.theme === "code vibes") {
       new CardCodeVibes(
         CARD_ICONS.code_vibes[index],

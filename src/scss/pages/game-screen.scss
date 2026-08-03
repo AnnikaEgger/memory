@@ -3,6 +3,7 @@
 body {
   background-color: var(--color-bg-1);
   @include flex-center(column, flex-start);
+  margin: 0 max(calc(50dvw - 720px), 0px);
 
   &:has(.cards-16),
   &:has(.cards-24) {
@@ -19,14 +20,15 @@ body {
   top: 50dvh;
   left: 50dvw;
   @include flex-center(column);
-  display: none;
+  display: flex;
   padding: 40px;
   gap: 54px;
   border: none;
   font-weight: 700;
   color: var(--color-bg-1);
   text-align: center;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -100dvh);
+  transition: transform 300ms ease-in-out;
 
   &__btns-wrapper {
     @include flex-gap(row, 24px);
@@ -34,6 +36,11 @@ body {
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &.fly-in {
+    transform: translate(-50%, -50%);
+    transition: transform 300ms ease-in-out;
   }
 }
 
@@ -122,6 +129,11 @@ body[data-theme="gaming"] .quit-game-btn {
       outline: 1px solid rgba(231, 28, 79, 1);
     }
   }
+}
+
+main {
+  flex: 1;
+  @include flex-center();
 }
 
 .cards-wrapper {
