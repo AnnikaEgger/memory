@@ -7,13 +7,15 @@ import { CardGaming } from "./card.class";
 import { gameConfig } from "./game-config";
 import { cards } from "./game-config";
 import * as Global from "./global";
+
+let scoreBlue = 0;
+let scoreOrange = 0;
+
 // import { IconName } from "./literals";
 
 const dialog = document.getElementById("quit-game-popup") as HTMLDialogElement;
 const board = document.getElementById("cards-wrapper");
 
-let scoreBlue = 0;
-let scoreOrange = 0;
 let currentPlayer = gameConfig.playerColor;
 
 const CARD_ICONS = {
@@ -254,9 +256,12 @@ function styleCurrentPlayer() {
 }
 
 function updateScore() {
-  if (currentPlayer === "blue") scoreBlue++;
+  if (currentPlayer === "blue") scoreBlue = scoreBlue++;
   else if (currentPlayer === "orange") scoreOrange++;
+  displayScores();
+}
 
+function displayScores() {
   const scoreBlueRef = document.getElementById("score-player-blue");
   const scoreOrangeRef = document.getElementById("score-player-orange");
   if (scoreBlueRef) scoreBlueRef.innerText = scoreBlue.toString();
@@ -268,5 +273,18 @@ function allCardsSolved() {
 }
 
 function handleGameEnd() {
+  saveResultsToLocalStorage();
   window.location.href = "./endscreen.html";
+}
+
+function saveResultsToLocalStorage() {
+  localStorage.setItem("winner", getWinner());
+  localStorage.setItem("scoreBlue", scoreBlue.toString());
+  localStorage.setItem("scoreOrange", scoreOrange.toString());
+}
+
+function getWinner() {
+  if (scoreBlue !== scoreOrange) {
+    return scoreBlue > scoreOrange ? "blue" : "orange";
+  } else return "draw";
 }
