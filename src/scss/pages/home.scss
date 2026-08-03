@@ -33,12 +33,10 @@ h1 {
 }
 
 .home-btn-img-container {
-  // position: relative;
   @include flex-center;
   width: 35px;
 }
 
 .home-btn__arrow-hover {
-  // opacity: 0;
   display: none;
 }

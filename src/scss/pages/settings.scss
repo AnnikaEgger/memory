@@ -98,12 +98,6 @@ h1 {
   @include flex-center(column);
   align-items: end;
   gap: 45px;
-  // margin-right: 106px;
-
-  &:has(.chosen-settings--final) {
-    // margin-right: 0;
-    // align-items: center;
-  }
 }
 
 .game-preview {
@@ -212,50 +206,5 @@ h1 {
   }
   100% {
     opacity: 1;
-  }
-}
-
-.btn-settings {
-  padding: 14px 20px;
-  @include flex-gap(row, 8px);
-  width: 126px;
-  transition: transform $transition-hover;
-
-  > p {
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  svg {
-    transition: rotate $transition-hover;
-  }
-
-  &:not(:disabled) {
-    &:hover {
-      transform: scale(1.05);
-      transition: transform $transition-hover;
-
-      > p {
-        font-size: 22px;
-      }
-
-      > svg {
-        rotate: -5deg;
-        transition: rotate $transition-hover;
-      }
-    }
-  }
-
-  &:disabled {
-    background-color: #dbdbd6 !important;
-    cursor: not-allowed;
-
-    > p {
-      color: #a3a1a1;
-    }
-
-    svg path {
-      fill: #a3a1a1;
-    }
   }
 }

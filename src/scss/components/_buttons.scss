@@ -4,12 +4,7 @@ button {
   font: inherit;
   color: inherit;
   cursor: pointer;
-  // transition: all 125ms ease-in-out;
 }
-
-// button:hover {
-//   transition: all 125ms ease-in-out;
-// }
 
 .btn {
   font-family: "Red Rose", sans-serif;
@@ -54,12 +49,10 @@ button {
       }
 
       .home-btn__arrow {
-        // opacity: 0;
         display: none;
       }
 
       .home-btn__arrow-hover {
-        // opacity: 1;
         display: unset;
       }
     }
@@ -90,6 +83,123 @@ input[type="radio"] {
 
     &::before {
       transform: scale(1);
+    }
+  }
+}
+
+.exit-game-btn {
+  font-weight: 700;
+  color: white;
+  @include flex-center(row);
+
+  &--settings {
+    padding: 4px 8px;
+    font-size: 10px;
+    cursor: default;
+  }
+
+  &--game {
+    padding: 12px 20px;
+  }
+}
+
+body[data-theme="code vibes"] .exit-game-btn {
+  gap: 6px;
+  background-color: rgba(134, 233, 214, 0.14);
+  border: 1px solid var(--color-card-2);
+
+  &--game {
+    font-size: 24px;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    &:hover {
+      box-shadow: 4px 4px 6px 0px rgba(77, 213, 188, 0.2);
+      outline: 2px solid var(--color-card-2);
+      background-color: rgba(134, 233, 214, 0.26);
+      svg path {
+        box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+}
+
+body[data-theme="gaming"] .exit-game-btn {
+  gap: 10px;
+  border: 1px solid rgba(231, 28, 79, 1);
+
+  &--settings {
+    border-radius: 7px;
+
+    svg path {
+      fill: rgba(231, 28, 79, 1);
+    }
+  }
+
+  &--game {
+    font-size: 20px;
+    border-width: 2px;
+    border-radius: 10px;
+
+    svg {
+      width: 25.75px;
+      height: 22.5px;
+    }
+
+    &:hover {
+      background-color: rgba(237, 27, 118, 0.14);
+      box-shadow: 3px 3px 5px 0px rgba(47, 46, 46, 0.2);
+      svg path {
+        box-shadow: 3px 3px 4.5px 0px rgba(0, 0, 0, 0.35);
+        fill: rgba(231, 28, 79, 1);
+      }
+    }
+  }
+}
+
+.btn-settings {
+  padding: 14px 20px;
+  @include flex-gap(row, 8px);
+  width: 126px;
+  transition: transform $transition-hover;
+
+  > p {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  svg {
+    transition: rotate $transition-hover;
+  }
+
+  &:not(:disabled) {
+    &:hover {
+      transform: scale(1.05);
+      transition: transform $transition-hover;
+
+      > p {
+        font-size: 22px;
+      }
+
+      > svg {
+        rotate: -5deg;
+        transition: rotate $transition-hover;
+      }
+    }
+  }
+
+  &:disabled {
+    background-color: #dbdbd6 !important;
+    cursor: not-allowed;
+
+    > p {
+      color: #a3a1a1;
+    }
+
+    svg path {
+      fill: #a3a1a1;
     }
   }
 }

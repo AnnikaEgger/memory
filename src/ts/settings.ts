@@ -2,28 +2,33 @@ import "../scss/main.scss";
 import "../scss/pages/settings.scss";
 import { gameConfig } from "./game-config";
 
+const fieldsets = document.querySelectorAll(".game-settings__group");
+const startGameBtn = document.getElementById(
+  "start-game-btn",
+) as HTMLButtonElement;
+const body = document.getElementById("settings-body");
+let themeBefore: string;
+let hasTriggered = false;
+
 init();
 
 function init() {
+  addSettingsOptionsEventListener();
+  updateSelectedTheme();
+}
+
+function addSettingsOptionsEventListener() {
   const fieldRef = document.getElementById("field");
   if (fieldRef) {
     fieldRef.addEventListener("click", (e) => {
       const card = (e.target as HTMLElement).closest(
         ".card",
       ) as HTMLButtonElement;
-      if (card) {
-        card.classList.toggle("is-flipped");
-      }
+      if (card) card.classList.toggle("is-flipped");
     });
   }
-
-  updateSelectedTheme();
 }
 
-const fieldsets = document.querySelectorAll(".game-settings__group");
-const startGameBtn = document.getElementById(
-  "start-game-btn",
-) as HTMLButtonElement;
 startGameBtn?.addEventListener("click", () => {
   location.href = "game.html";
 });
@@ -51,9 +56,8 @@ function setGameConfigToLocalStorage() {
 function selectTheme(selectedTheme: "code vibes" | "gaming") {
   gameConfig.theme = selectedTheme;
   const body = document.querySelector("body");
-  if (body) {
-    body.dataset.theme = gameConfig.theme;
-  }
+  if (body) body.dataset.theme = gameConfig.theme;
+
   themeBefore = gameConfig.theme;
   updateSelectedTheme();
 }
@@ -98,45 +102,37 @@ function checkIfEverythingIsSelected() {
   }
 }
 
-let themeBefore: string;
-let hasTriggered = false;
-
-const body = document.getElementById("settings-body");
-
 document
   .getElementById("code-vibes-option")
   ?.addEventListener("mouseenter", () => {
-    if (hasTriggered) return;
-    hasTriggered = true;
-
-    if (body) {
-      if (body.dataset.theme) themeBefore = body?.dataset.theme;
-      body.dataset.theme = "code vibes";
-    }
-  });
-
-document
-  .getElementById("code-vibes-option")
-  ?.addEventListener("mouseleave", () => {
-    hasTriggered = false;
-    if (body) body.dataset.theme = themeBefore;
+    handleThemeOptionMouseEnter("code vibes");
   });
 
 document
   .getElementById("game-theme-option")
   ?.addEventListener("mouseenter", () => {
-    if (hasTriggered) return;
-    hasTriggered = true;
-
-    if (body) {
-      if (body.dataset.theme) themeBefore = body?.dataset.theme;
-      body.dataset.theme = "gaming";
-    }
+    handleThemeOptionMouseEnter("gaming");
   });
+
+function handleThemeOptionMouseEnter($theme: string) {
+  if (hasTriggered) return;
+  hasTriggered = true;
+
+  if (body) {
+    if (body.dataset.theme) themeBefore = body?.dataset.theme;
+    body.dataset.theme = $theme;
+  }
+}
+
+document
+  .getElementById("code-vibes-option")
+  ?.addEventListener("mouseleave", handleThemeOptionMouseLeave);
 
 document
   .getElementById("game-theme-option")
-  ?.addEventListener("mouseleave", () => {
-    hasTriggered = false;
-    if (body) body.dataset.theme = themeBefore;
-  });
+  ?.addEventListener("mouseleave", handleThemeOptionMouseLeave);
+
+function handleThemeOptionMouseLeave() {
+  hasTriggered = false;
+  if (body) body.dataset.theme = themeBefore;
+}

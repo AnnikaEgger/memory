@@ -1,21 +1,22 @@
 import "../scss/main.scss";
 import "../scss/pages/end-screen.scss";
-
-// import { gameConfig } from "./game-config";
-import * as Global from "./global";
+import * as Main from "../main";
 
 const gameResult = document.getElementById("game-result");
 
 init();
 
 function init() {
-  Global.getGameConfigFromLocalStorage();
-  Global.setDataTheme();
+  Main.getGameConfigFromLocalStorage();
+  Main.setDataTheme();
   getResultsFromLocalStorage();
+  flyInResults();
+}
 
+function flyInResults() {
   setTimeout(() => {
     gameResult?.classList.add("fly-in");
-  }, 5000);
+  }, 3000);
 }
 
 function getResultsFromLocalStorage() {
@@ -27,7 +28,7 @@ function getResultsFromLocalStorage() {
   if (winner) displayCorrectGameResult(winner);
 }
 
-export function displayScores($scoreBlue: string, $scoreOrange: string) {
+function displayScores($scoreBlue: string, $scoreOrange: string) {
   const scoreBlueRef = document.getElementById("score-player-blue");
   const scoreOrangeRef = document.getElementById("score-player-orange");
   if (scoreBlueRef) scoreBlueRef.innerText = $scoreBlue.toString();
@@ -39,7 +40,10 @@ function displayCorrectGameResult($winner: string) {
   if (winnerText)
     winnerText.innerText =
       $winner.charAt(0).toUpperCase() + $winner.slice(1) + " Player";
+  handleGamResultClasses($winner);
+}
 
+function handleGamResultClasses($winner: string) {
   gameResult?.classList.remove("draw", "win", "blue", "orange");
 
   if ($winner === "draw") gameResult?.classList.add("draw");

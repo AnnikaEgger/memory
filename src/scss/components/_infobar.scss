@@ -42,9 +42,6 @@ body:has(.cards-36) .infobar {
     padding: 4px 8px;
   }
 
-  &--game {
-  }
-
   &__player {
     @include flex-center(row);
     &--1 {
@@ -189,8 +186,6 @@ body[data-theme="code vibes"] .current-player {
   &--settings {
     font-size: 10px;
   }
-  &--game {
-  }
 }
 
 body[data-theme="gaming"] .current-player {
@@ -205,80 +200,6 @@ body[data-theme="gaming"] .current-player {
     .current-player__svg {
       width: 41px;
       height: 40px;
-    }
-  }
-}
-
-.exit-game-btn {
-  font-weight: 700;
-  color: white;
-  @include flex-center(row);
-
-  &--settings {
-    padding: 4px 8px;
-    font-size: 10px;
-    cursor: default;
-  }
-
-  &--game {
-    padding: 12px 20px;
-  }
-}
-
-body[data-theme="code vibes"] .exit-game-btn {
-  gap: 6px;
-  background-color: rgba(134, 233, 214, 0.14);
-  border: 1px solid var(--color-card-2);
-
-  &--settings {
-  }
-  &--game {
-    font-size: 24px;
-    svg {
-      width: 30px;
-      height: 30px;
-    }
-
-    &:hover {
-      box-shadow: 4px 4px 6px 0px rgba(77, 213, 188, 0.2);
-      outline: 2px solid var(--color-card-2);
-      background-color: rgba(134, 233, 214, 0.26);
-      svg path {
-        box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.25);
-      }
-    }
-  }
-}
-
-body[data-theme="gaming"] .exit-game-btn {
-  gap: 10px;
-  border: 1px solid rgba(231, 28, 79, 1);
-
-  &--settings {
-    border-radius: 7px;
-
-    svg path {
-      fill: rgba(231, 28, 79, 1);
-    }
-  }
-
-  &--game {
-    font-size: 20px;
-    border-width: 2px;
-    border-radius: 10px;
-
-    svg {
-      width: 25.75px;
-      height: 22.5px;
-    }
-
-    &:hover {
-      background-color: rgba(237, 27, 118, 0.14);
-      box-shadow: 3px 3px 5px 0px rgba(47, 46, 46, 0.2);
-      svg path {
-        box-shadow: 3px 3px 4.5px 0px rgba(0, 0, 0, 0.35);
-        fill: rgba(231, 28, 79, 1);
-      }
     }
   }
 }

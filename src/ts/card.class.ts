@@ -52,7 +52,6 @@ export class CardCodeVibes extends Card {
 export class CardGaming extends Card {
   constructor($src: string, $altText: string) {
     super($src);
-
     this.createCards($src, $altText);
   }
 

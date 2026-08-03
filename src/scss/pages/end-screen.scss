@@ -153,9 +153,6 @@ body[data-theme="gaming"] .game-over {
 body[data-theme="code vibes"] .game-result {
   font-family: "Red Rose", sans-serif;
 
-  &__announcement {
-  }
-
   &__subtitle {
     font-size: 40px;
   }
@@ -199,10 +196,6 @@ body[data-theme="code vibes"] .game-result {
   }
 
   &.win {
-    .game-result__content {
-      // @include flex-center(column, flex-start);
-    }
-
     .win-element.code-vibes {
       display: unset;
     }

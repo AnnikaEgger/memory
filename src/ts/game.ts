@@ -1,117 +1,28 @@
 import "../scss/main.scss";
 import "../scss/pages/game-screen.scss";
-
 import { Card } from "./card.class";
 import { CardCodeVibes } from "./card.class";
 import { CardGaming } from "./card.class";
 import { gameConfig } from "./game-config";
 import { cards } from "./game-config";
-import * as Global from "./global";
-
-let scoreBlue = 0;
-let scoreOrange = 0;
-
-// import { IconName } from "./literals";
+import * as Main from "../main";
+import { CARD_ICONS } from "./data";
+import { CARD_ICONS_ALT_TEXTS } from "./data";
 
 const dialog = document.getElementById("quit-game-popup") as HTMLDialogElement;
 const board = document.getElementById("cards-wrapper");
-
+let scoreBlue = 0;
+let scoreOrange = 0;
 let currentPlayer: string;
-
-const CARD_ICONS = {
-  code_vibes: [
-    "angular.svg",
-    "bootstrap.svg",
-    "css.svg",
-    "django.svg",
-    "firebase.svg",
-    "git.svg",
-    "github.svg",
-    "html.svg",
-    "js.svg",
-    "node-js.svg",
-    "python.svg",
-    "react.svg",
-    "sass.svg",
-    "sql.svg",
-    "terminal.svg",
-    "ts.svg",
-    "vs-code.svg",
-    "vue-js.svg",
-  ],
-
-  gaming: [
-    "banana.svg",
-    "card.svg",
-    "coin.svg",
-    "cone-circle.svg",
-    "controller.svg",
-    "creeper.svg",
-    "cubes.png",
-    "gameboy.svg",
-    "labyrinth.svg",
-    "level-up.svg",
-    "cone-square.svg",
-    "pacman-yellow.svg",
-    "pacman.svg",
-    "play-btn.svg",
-    "puzzle.svg",
-    "snake.svg",
-    "cone-triangle.svg",
-    "toad.svg",
-  ],
-};
-
-const CARD_ICONS_ALT_TEXTS = {
-  code_vibes: [
-    "Angular Icon",
-    "Bootstrap Icon",
-    "CSS Icon",
-    "Django Icon",
-    "Firebase Icon",
-    "Git Icon",
-    "GitHub Icon",
-    "HTML Icon",
-    "JavaScript Icon",
-    "Node.js Icon",
-    "Python Icon",
-    "React Icon",
-    "Sass Icon",
-    "SQL Icon",
-    "Terminal Icon",
-    "TypeScript Icon",
-    "VS Code Icon",
-    "Vue.js Icon",
-  ],
-  gaming: [
-    "Banana Icon",
-    "Card Icon",
-    "Coin Icon",
-    "Cone Circle Icon",
-    "Controller Icon",
-    "Creeper Icon",
-    "Cubes Icon",
-    "Gameboy Icon",
-    "Labyrinth Icon",
-    "Level Up Icon",
-    "Cone Square Icon",
-    "Yellow Pacman Icon",
-    "Pacman Icon",
-    "Play Button Icon",
-    "Puzzle Icon",
-    "Snake Icon",
-    "Cone Triangle Icon",
-    "Toad Icon",
-  ],
-};
+let flipLock = false;
 
 init();
 
 function init() {
-  Global.getGameConfigFromLocalStorage();
+  Main.getGameConfigFromLocalStorage();
   currentPlayer = gameConfig.playerColor;
   if (board) board.classList.add(`cards-${gameConfig.amountOfCards}`);
-  Global.setDataTheme();
+  Main.setDataTheme();
   createCards();
   shuffleCardsAndAppendToBoard();
   styleCurrentPlayer();
@@ -144,32 +55,33 @@ function closeQuitGamePopup() {
 function createCards() {
   for (let index = 0; index < gameConfig.amountOfCards / 2; index++) {
     if (gameConfig.theme === "code vibes") {
-      new CardCodeVibes(
-        CARD_ICONS.code_vibes[index],
-        CARD_ICONS_ALT_TEXTS.code_vibes[index],
-      );
-      new CardCodeVibes(
-        CARD_ICONS.code_vibes[index],
-        CARD_ICONS_ALT_TEXTS.code_vibes[index],
-      );
+      createNewCard("code vibes", index);
+      createNewCard("code vibes", index);
     } else if (gameConfig.theme === "gaming") {
-      new CardGaming(
-        CARD_ICONS.gaming[index],
-        CARD_ICONS_ALT_TEXTS.gaming[index],
-      );
-      new CardGaming(
-        CARD_ICONS.gaming[index],
-        CARD_ICONS_ALT_TEXTS.gaming[index],
-      );
+      createNewCard("gaming", index);
+      createNewCard("gaming", index);
     }
   }
 }
 
-let timeout: boolean = false;
+function createNewCard($theme: string, $index: number) {
+  if ($theme === "code vibes") {
+    new CardCodeVibes(
+      CARD_ICONS.code_vibes[$index],
+      CARD_ICONS_ALT_TEXTS.code_vibes[$index],
+    );
+  } else if ($theme === "gaming") {
+    new CardGaming(
+      CARD_ICONS.gaming[$index],
+      CARD_ICONS_ALT_TEXTS.gaming[$index],
+    );
+  }
+}
 
 document.querySelectorAll(".card").forEach((card) => {
   card.addEventListener("click", () => {
-    if (!timeout) card.classList.toggle("is-flipped");
+    if (!flipLock && !card.classList.contains("card--matched"))
+      card.classList.add("is-flipped");
   });
 });
 
@@ -190,28 +102,24 @@ function shuffleCardsAndAppendToBoard() {
 }
 
 board?.addEventListener("click", (event) => {
-  setTimeout(() => {
-    timeout = true;
-    if (
-      event.target instanceof HTMLButtonElement &&
-      event.target.classList.contains("card")
-    ) {
-      let flippedCards: Card[] = [];
-
-      cards.forEach((card) => {
-        if (card.cardEl.classList.contains("is-flipped") && !card.isSolved) {
-          flippedCards.push(card);
-        }
-      });
-
-      if (flippedCards.length >= 2) {
-        checkForMatch(flippedCards);
-        setTimeout(toggleCurrentPlayer, 500);
-      }
-    }
-    timeout = false;
-  }, 250);
+  if (
+    event.target instanceof HTMLButtonElement &&
+    event.target.classList.contains("card")
+  ) {
+    let flippedCards: Card[] = [];
+    cards.forEach((card) => {
+      if (card.cardEl.classList.contains("is-flipped") && !card.isSolved)
+        flippedCards.push(card);
+    });
+    if (flippedCards.length >= 2) evaluateMove(flippedCards);
+  }
 });
+
+function evaluateMove($flippedCards: Card[]) {
+  flipLock = true;
+  checkForMatch($flippedCards);
+  setTimeout(toggleCurrentPlayer, 500);
+}
 
 function checkForMatch(flippedCards: Card[]) {
   const card1 = flippedCards[0].icon;
@@ -228,7 +136,9 @@ function isMatch($icon1: string, $icon2: string) {
 
 function handleMatch(flippedCards: Card[]) {
   flippedCards.forEach((card) => {
-    card.cardEl.classList.add("card--matched");
+    setTimeout(() => {
+      card.cardEl.classList.add("card--matched");
+    }, 150);
     card.isSolved = true;
   });
 
@@ -247,6 +157,7 @@ function handleNoMatch(flippedCards: Card[]) {
 function toggleCurrentPlayer() {
   currentPlayer = currentPlayer === "blue" ? "orange" : "blue";
   styleCurrentPlayer();
+  flipLock = false;
 }
 
 function styleCurrentPlayer() {
@@ -275,7 +186,10 @@ function allCardsSolved() {
 
 function handleGameEnd() {
   saveResultsToLocalStorage();
-  window.location.href = "./endscreen.html";
+
+  setTimeout(() => {
+    window.location.href = "./endscreen.html";
+  }, 1000);
 }
 
 function saveResultsToLocalStorage() {
