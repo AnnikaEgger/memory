@@ -1,32 +1,42 @@
 import "../scss/main.scss";
 import "../scss/pages/settings.scss";
 import { gameConfig } from "./game-config";
+import { GameConfigInt } from "./game-config";
+import { CardsAmount } from "./game-config";
 
-/** Reference to all settings fieldsets. */
 const fieldsets = document.querySelectorAll(".game-settings__group");
-/** Button that starts the game once all settings are selected. */
 const startGameBtn = document.getElementById(
   "start-game-btn",
 ) as HTMLButtonElement;
-/** The main settings body element used for temporary theme previews. */
 const body = document.getElementById("settings-body");
-/** Stores the previously active theme before previewing another one. */
 let themeBefore: string;
-/** Tracks whether the hover preview effect has already been triggered. */
 let hasTriggered = false;
 
 init();
 
 /**
- * Initializes the settings page interactions and updates the visible theme label.
+ * Initializes the settings page, restores any saved configuration, and updates the UI.
  */
 function init() {
-  addSettingsOptionsEventListener();
+  addEventListeners();
+  applyPreviousSettings();
   updateSelectedTheme();
+  setTimeout(checkIfEverythingIsSelected, 500);
 }
 
 /**
- * Adds click handling to the preview card so users can flip it visually.
+ * Registers all event listeners for the settings interactions.
+ */
+function addEventListeners() {
+  addSettingsOptionsEventListener();
+  addStartGameBtnEventListener();
+  addFieldsetsChangeListeners();
+  addCodeVibesOptionEventListeners();
+  addGameOptionEventListeners();
+}
+
+/**
+ * Enables flipping of the preview card when the user clicks it.
  */
 function addSettingsOptionsEventListener() {
   const fieldRef = document.getElementById("field");
@@ -40,25 +50,82 @@ function addSettingsOptionsEventListener() {
   }
 }
 
-startGameBtn?.addEventListener("click", () => {
-  location.href = "game.html";
-});
-
-fieldsets.forEach((fieldset) => {
-  fieldset.addEventListener("change", (event) => {
-    const target = event.target as HTMLInputElement;
-    checkIfEverythingIsSelected();
-
-    if (fieldset.id === "game-themes")
-      selectTheme(target.value as "code vibes" | "gaming");
-    else if (fieldset.id === "players")
-      selectPlayer(target.value as "blue" | "orange");
-    else if (fieldset.id === "board-sizes")
-      selectBoardSize(target.value as "16" | "24" | "32");
-
-    setGameConfigToLocalStorage();
+/**
+ * Starts the game when the start button is clicked.
+ */
+function addStartGameBtnEventListener() {
+  startGameBtn?.addEventListener("click", () => {
+    location.href = "game.html";
   });
-});
+}
+
+/**
+ * Listens for changes in each settings fieldset and updates the game configuration.
+ */
+function addFieldsetsChangeListeners() {
+  fieldsets.forEach((fieldset) => {
+    fieldset.addEventListener("change", (event) => {
+      const target = event.target as HTMLInputElement;
+      checkIfEverythingIsSelected();
+      if (fieldset instanceof HTMLFieldSetElement)
+        selectCurrentOption(fieldset, target);
+      setGameConfigToLocalStorage();
+    });
+  });
+}
+
+/**
+ * Restores the previously saved configuration from local storage, if available.
+ */
+function applyPreviousSettings() {
+  const savedConfig = localStorage.getItem("gameConfig");
+
+  if (savedConfig) {
+    const previousConfig: GameConfigInt = JSON.parse(savedConfig);
+    Object.assign(gameConfig, previousConfig);
+    applyGameConfigToOptions();
+  }
+}
+
+/**
+ * Applies the current game configuration values to the matching radio buttons.
+ */
+function applyGameConfigToOptions() {
+  checkRadioButton(gameConfig.theme);
+  checkRadioButton(gameConfig.playerColor);
+  checkRadioButton(gameConfig.amountOfCards);
+  selectTheme(gameConfig.theme);
+  selectBoardSize(gameConfig.amountOfCards);
+  selectPlayer(gameConfig.playerColor);
+}
+
+/**
+ * Checks the matching radio input for a given value.
+ *
+ * @param value - The stored configuration value to match against the input element.
+ */
+function checkRadioButton(value: string | number) {
+  const input = document.querySelector(`input[value="${value}"]`);
+  if (input instanceof HTMLInputElement) input.checked = true;
+}
+
+/**
+ * Routes the selected option to the appropriate configuration handler.
+ *
+ * @param fieldset - The fieldset that contains the changed input.
+ * @param target - The selected radio button input.
+ */
+function selectCurrentOption(
+  fieldset: HTMLFieldSetElement,
+  target: HTMLInputElement,
+) {
+  if (fieldset.id === "game-themes")
+    selectTheme(target.value as "code vibes" | "gaming");
+  else if (fieldset.id === "players")
+    selectPlayer(target.value as "blue" | "orange");
+  else if (fieldset.id === "board-sizes")
+    selectBoardSize(target.value as "16" | "24" | "36");
+}
 
 /**
  * Stores the current game configuration in local storage.
@@ -113,7 +180,7 @@ function selectPlayer(selectedPlayer: "blue" | "orange") {
  *
  * @param selectedBoardSize - The selected board size as a string value.
  */
-function selectBoardSize(selectedBoardSize: "16" | "24" | "32") {
+function selectBoardSize(selectedBoardSize: string | number) {
   const selectedSizeRef = document.getElementById("chosen-board-size");
   gameConfig.amountOfCards = Number(selectedBoardSize);
   if (selectedSizeRef)
@@ -137,40 +204,48 @@ function checkIfEverythingIsSelected() {
   }
 }
 
-document
-  .getElementById("code-vibes-option")
-  ?.addEventListener("mouseenter", () => {
-    handleThemeOptionMouseEnter("code vibes");
-  });
+/**
+ * Attaches hover listeners to the Code Vibes option for theme previewing.
+ */
+function addCodeVibesOptionEventListeners() {
+  const codeVibesOption = document.getElementById("code-vibes-option");
 
-document
-  .getElementById("game-theme-option")
-  ?.addEventListener("mouseenter", () => {
-    handleThemeOptionMouseEnter("gaming");
-  });
+  if (codeVibesOption) {
+    codeVibesOption.addEventListener("mouseenter", () => {
+      handleThemeOptionMouseEnter("code vibes");
+    });
+    codeVibesOption.addEventListener("mouseleave", handleThemeOptionMouseLeave);
+  }
+}
+
+/**
+ * Attaches hover listeners to the gaming option for theme previewing.
+ */
+function addGameOptionEventListeners() {
+  const gameOption = document.getElementById("game-theme-option");
+
+  if (gameOption) {
+    gameOption.addEventListener("mouseenter", () => {
+      handleThemeOptionMouseEnter("gaming");
+    });
+    gameOption.addEventListener("mouseleave", handleThemeOptionMouseLeave);
+  }
+}
 
 /**
  * Temporarily previews the hovered theme on the settings page.
  *
- * @param $theme - The theme name to preview.
+ * @param theme - The theme name to preview.
  */
-function handleThemeOptionMouseEnter($theme: string) {
+function handleThemeOptionMouseEnter(theme: string) {
   if (hasTriggered) return;
   hasTriggered = true;
 
   if (body) {
     if (body.dataset.theme) themeBefore = body?.dataset.theme;
-    body.dataset.theme = $theme;
+    body.dataset.theme = theme;
   }
 }
-
-document
-  .getElementById("code-vibes-option")
-  ?.addEventListener("mouseleave", handleThemeOptionMouseLeave);
-
-document
-  .getElementById("game-theme-option")
-  ?.addEventListener("mouseleave", handleThemeOptionMouseLeave);
 
 /**
  * Restores the previously active theme after the hover preview ends.

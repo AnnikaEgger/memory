@@ -2,8 +2,8 @@
 
 body {
   color: $color-primary;
-  padding: 120px 100px 0 170px;
-  @include flex-center(column, flex-start);
+  padding: 0 100px 0 170px;
+  @include flex-center(column);
   margin: 0 max(calc(50dvw - 720px), 0px);
 }
 

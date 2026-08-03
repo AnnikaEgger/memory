@@ -2,7 +2,6 @@ import "../scss/main.scss";
 import "../scss/pages/end-screen.scss";
 import * as Main from "../main";
 
-/** Reference to the end-screen result container. */
 const gameResult = document.getElementById("game-result");
 
 init();

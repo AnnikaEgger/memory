@@ -13,10 +13,13 @@
   <body id="settings-body" data-theme="code vibes">
     <div class="headline-wrapper">
       <h1>Settings</h1>
-      <img src="/assets/icons/line-with-square-long.svg" alt="" />
+      <img
+        src="/assets/icons/line-with-square-long.svg"
+        alt="Line with square"
+      />
     </div>
 
-    <div class="content-wrapper-settings">
+    <section class="content-wrapper-settings">
       <form class="game-settings">
         <fieldset id="game-themes" class="game-settings__group">
           <legend>
@@ -145,8 +148,8 @@
         </fieldset>
       </form>
 
-      <div class="settings-summary">
-        <div class="game-preview">
+      <section class="settings-summary">
+        <section class="game-preview">
           <header class="infobar infobar--settings">
             <div class="score score--settings">
               <div class="score__player score__player--1">
@@ -266,9 +269,9 @@
               />
             </div>
           </div>
-        </div>
+        </section>
 
-        <div id="chosen-settings" class="chosen-settings">
+        <section id="chosen-settings" class="chosen-settings">
           <p id="chosen-theme">Theme</p>
           <img
             class="yellow-slash"
@@ -327,9 +330,9 @@
             </svg>
             <p>Start</p>
           </button>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </section>
 
     <script type="module" src="../src/ts/settings.ts"></script>
   </body>
