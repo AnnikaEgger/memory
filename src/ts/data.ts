@@ -1,3 +1,6 @@
+/**
+ * Collection of icon filenames used for the code-vibes theme cards.
+ */
 export const CARD_ICONS = {
   code_vibes: [
     "angular.svg",
@@ -20,6 +23,7 @@ export const CARD_ICONS = {
     "vue-js.svg",
   ],
 
+  /** Collection of icon filenames used for the gaming theme cards. */
   gaming: [
     "banana.svg",
     "card.svg",
@@ -42,6 +46,9 @@ export const CARD_ICONS = {
   ],
 };
 
+/**
+ * Accessible alt texts for the available card icons.
+ */
 export const CARD_ICONS_ALT_TEXTS = {
   code_vibes: [
     "Angular Icon",
