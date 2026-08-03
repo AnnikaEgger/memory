@@ -35,6 +35,11 @@ export function displayScores($scoreBlue: string, $scoreOrange: string) {
 }
 
 function displayCorrectGameResult($winner: string) {
+  const winnerText = document.getElementById("winner-text");
+  if (winnerText)
+    winnerText.innerText =
+      $winner.charAt(0).toUpperCase() + $winner.slice(1) + " Player";
+
   gameResult?.classList.remove("draw", "win", "blue", "orange");
 
   if ($winner === "draw") gameResult?.classList.add("draw");

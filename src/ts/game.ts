@@ -256,7 +256,7 @@ function styleCurrentPlayer() {
 }
 
 function updateScore() {
-  if (currentPlayer === "blue") scoreBlue = scoreBlue++;
+  if (currentPlayer === "blue") scoreBlue++;
   else if (currentPlayer === "orange") scoreOrange++;
   displayScores();
 }

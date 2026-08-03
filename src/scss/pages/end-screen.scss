@@ -11,17 +11,21 @@ body {
   position: relative;
 }
 
-.confetti {
-  width: 100dvh;
+.confetti-wrapper {
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    max-height: 300px;
+  }
 }
 
 .game-over {
   @include flex-center(column);
   gap: 100px;
   font-family: "Red Rose", sans-serif;
-  // width: 100%;
-  // height: 100%;
-  // background-color: var(--color-bg-1);
+  width: 100%;
+  height: 100%;
 
   &__highlight {
     color: var(--color-card-2);
@@ -76,15 +80,19 @@ body[data-theme="gaming"] .game-over {
 
 .game-result {
   position: absolute;
-  @include flex-center(column);
   width: 100%;
   height: 100%;
   background-color: var(--color-bg-1);
   transform: translateY(-100%);
+  @include flex-center(column);
 
-  text-align: center;
-  gap: 64px;
-  color: white;
+  &__content {
+    @include flex-center(column);
+    text-align: center;
+    gap: 64px;
+    color: white;
+    flex: 1;
+  }
 
   &.fly-in {
     transform: translateY(0);
@@ -191,6 +199,10 @@ body[data-theme="code vibes"] .game-result {
   }
 
   &.win {
+    .game-result__content {
+      // @include flex-center(column, flex-start);
+    }
+
     .win-element.code-vibes {
       display: unset;
     }
