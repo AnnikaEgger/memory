@@ -1,9 +1,170 @@
-@use "../components/main";
+@use "../components/main" as *;
 
 body {
+  background-color: var(--color-bg-1);
   @include flex-center(column, flex-start);
+
+  &[data-theme="gaming"] {
+    @include flex-center();
+  }
 }
 
 .confetti {
   width: 100dvh;
+}
+
+.game-result {
+  @include flex-center(column);
+  text-align: center;
+  gap: 64px;
+  color: white;
+
+  &__announcement {
+    @include flex-gap(column, 8px);
+  }
+
+  &.blue {
+    .game-result__highlight {
+      color: var(--color-player-1);
+    }
+  }
+
+  &.orange {
+    .game-result__highlight {
+      color: var(--color-player-2);
+    }
+  }
+
+  &.win {
+    .draw-element {
+      display: none;
+    }
+  }
+
+  &.draw {
+    gap: 0;
+
+    .win-element {
+      display: none;
+    }
+  }
+
+  &__close-btn {
+    font-weight: 700;
+    color: white;
+  }
+
+  &__scale {
+    margin: 24px 0 64px 0;
+
+    path {
+      fill: var(--color-card-2);
+      stroke: var(--color-card-2);
+    }
+  }
+
+  &__highlight {
+    .draw-element {
+      color: var(--color-card-2);
+    }
+  }
+}
+
+body[data-theme="code vibes"] .game-result {
+  font-family: "Red Rose", sans-serif;
+
+  &__announcement {
+  }
+
+  &__subtitle {
+    font-size: 40px;
+  }
+
+  &__highlight {
+    font-size: 60px;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    .draw-element {
+      font-size: 128px;
+
+      text-shadow:
+        4px 6px 12px rgba(50, 150, 140, 0.3),
+        0px 0px 20px rgba(76, 211, 194, 0.4);
+    }
+  }
+
+  &__close-btn {
+    border: 2px solid var(--color-card-2);
+    background-color: rgba(134, 233, 214, 0.2);
+    padding: 16px 24px;
+    font-size: 24px;
+
+    &:hover {
+      outline: 1px solid rgba(231, 28, 79, 1);
+      box-shadow: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
+    }
+  }
+
+  &.blue {
+    .game-result__svg path {
+      fill: var(--color-player-1);
+    }
+  }
+
+  &.orange {
+    .game-result__svg path {
+      fill: var(--color-player-2);
+    }
+  }
+
+  &.win {
+    .win-element.code-vibes {
+      display: unset;
+    }
+  }
+}
+
+body[data-theme="gaming"] .game-result {
+  font-family: "Orbitron", sans-serif;
+
+  &__announcement {
+    font-weight: 700;
+  }
+
+  &__subtitle {
+    font-size: 28px;
+  }
+
+  &__highlight {
+    font-size: 64px;
+
+    .draw-element {
+      font-size: 128px;
+      text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &__close-btn {
+    border: 2px solid rgba(231, 28, 79, 1);
+    background-color: rgba(237, 27, 118, 0.08);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 20px;
+
+    &:hover {
+      outline: 1px solid rgba(231, 28, 79, 1);
+      box-shadow: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
+    }
+  }
+
+  &__scale {
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+
+  &.win {
+    .win-element.gaming {
+      display: unset;
+    }
+  }
 }

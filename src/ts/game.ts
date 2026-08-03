@@ -6,6 +6,7 @@ import { CardCodeVibes } from "./card.class";
 import { CardGaming } from "./card.class";
 import { gameConfig } from "./game-config";
 import { cards } from "./game-config";
+import * as Global from "./global";
 // import { IconName } from "./literals";
 
 const dialog = document.getElementById("quit-game-popup") as HTMLDialogElement;
@@ -105,22 +106,12 @@ const CARD_ICONS_ALT_TEXTS = {
 init();
 
 function init() {
-  getGameConfigFromLocalStorage();
+  Global.getGameConfigFromLocalStorage();
   if (board) board.classList.add(`cards-${gameConfig.amountOfCards}`);
-  document.querySelector("body")?.setAttribute("data-theme", gameConfig.theme);
+  Global.setDataTheme();
   createCards();
   shuffleCardsAndAppendToBoard();
   styleCurrentPlayer();
-}
-
-function getGameConfigFromLocalStorage() {
-  const storedConfig = localStorage.getItem("gameConfig");
-  if (storedConfig) {
-    const parsedConfig = JSON.parse(storedConfig);
-    gameConfig.theme = parsedConfig.theme;
-    gameConfig.playerColor = parsedConfig.playerColor;
-    gameConfig.amountOfCards = parsedConfig.amountOfCards;
-  }
 }
 
 document
@@ -148,7 +139,7 @@ function closeQuitGamePopup() {
 }
 
 function createCards() {
-  for (let index = 0; index < gameConfig.amountOfCards / 2; index++) {
+  for (let index = 0; index < 4; index++) {
     if (gameConfig.theme === "code vibes") {
       new CardCodeVibes(
         CARD_ICONS.code_vibes[index],
@@ -212,7 +203,6 @@ board?.addEventListener("click", (event) => {
 
       if (flippedCards.length >= 2) {
         checkForMatch(flippedCards);
-
         setTimeout(toggleCurrentPlayer, 500);
       }
     }
@@ -240,6 +230,7 @@ function handleMatch(flippedCards: Card[]) {
   });
 
   updateScore();
+  if (allCardsSolved()) handleGameEnd();
 }
 
 function handleNoMatch(flippedCards: Card[]) {
@@ -270,4 +261,12 @@ function updateScore() {
   const scoreOrangeRef = document.getElementById("score-player-orange");
   if (scoreBlueRef) scoreBlueRef.innerText = scoreBlue.toString();
   if (scoreOrangeRef) scoreOrangeRef.innerText = scoreOrange.toString();
+}
+
+function allCardsSolved() {
+  return cards.every((card) => card.isSolved);
+}
+
+function handleGameEnd() {
+  window.location.href = "./endscreen.html";
 }
